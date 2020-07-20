@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ctsi.credit.mapper.CollectionMapper">
+
+	<!-- 根据用户收藏视频或者图片 -->
+	<insert id="insertCollection"  parameterType="java.util.HashMap">
+		  insert into ssm_usercollection values('1',#{name,jdbcType=VARCHAR},#{path,jdbcType=VARCHAR},#{userId,jdbcType=VARCHAR});
+	</insert>
+
+	<!--读取收藏-->
+	<select id="readCollection" parameterType="java.util.HashMap" resultType="int">
+		select count(1) from ssm_usercollection where userid = #{userId,jdbcType=VARCHAR} and usercollection_path = #{usercollection_path,jdbcType=VARCHAR};
+	</select>
+
+	<!--取消收藏-->
+	<select id="delectPath" parameterType="java.util.HashMap" >
+		delete from ssm_usercollection where userid = #{userid,jdbcType=VARCHAR} and usercollection_path = #{usercollection_path,jdbcType=VARCHAR};
+	</select>
+
+    <!--显示收藏列表-->
+    <select id="showCollection" parameterType="string" resultType="com.ctsi.credit.entity.UserCollection" >
+		select * from ssm_usercollection where userid = #{userId};
+	</select>
+	<!--修改文件夹名称-->
+	<select id="updateDirName" parameterType="java.util.HashMap" resultType="com.ctsi.credit.entity.UserCollection" >
+		UPDATE ssm_usercollection SET usercollection_name =  #{dirName,jdbcType=VARCHAR}  WHERE usercollection_name = #{oldDirName,jdbcType=VARCHAR} and userid = #{userId,jdbcType=VARCHAR};
+	</select>
+
+</mapper>

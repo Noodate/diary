@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<base target="_parent">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>金融算法云</title>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/animate.min.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="css/ctsi.css" rel="stylesheet">
+		<link href="css/responsive.css" rel="stylesheet">
+		<link rel="shortcut icon" href="images/ico/ctsi.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	</head>
+	<body style="overflow: hidden;">
+		<header id="header" class="header">
+			<div class="navbar navbar-inverse header_cover_fix" role="banner">
+				<div class="container">
+					<div class="header_cover">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="index.html">
+								<h1><img src="images/ctsi/ctsi.png" alt="logo" class="logo_size">
+									<span class="header_span">金融算法云</span></h1>
+							</a>
+						</div>
+						<div class="collapse navbar-collapse">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="active"><a href="index.html">首页</a></li>
+								<li class="dropdown"><a href="javascript:void(0);" class="dropdown_a">产品介绍 <i class="fa "></i></a>
+									<ul role="menu" class="sub-menu">
+										<li><a href="financialAlgorithmCloud.html">金融算法云</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="javascript:void(0);" class="dropdown_a">咨询培训 <i class="fa "></i></a>
+									<ul role="menu" class="sub-menu">
+										<li><a href="education.html">咨询培训</a></li>
+									</ul>
+								</li>
+								<li class="active"><a href="aboutUs.html">关于我们</a></li>
+								<li><a href="javascript:void(0);"><img src="images/ctsi/icon_position.png" style="top: -5px;position: relative;right: 3px;">中国</a></li>
+								<li><a href="javascript:void(0);">EN</a></li>
+								<li><a href="javascript:void(0);">登陆系统</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cutBanner">
+				<div class="leftCut circle" onclick="unautochange()">
+					<span class="cutBannerSpan">
+						< </span> <!-- <img class="cutBannerImg" src="images/ctsi/leftArrow.png"> -->
+				</div>
+				<div class="rightCut circle" onclick="autochange()">
+					<span class="cutBannerSpan"> > </span>
+					<!-- <img class="cutBannerImg" src="images/ctsi/rightArrow.png" > -->
+				</div>
+			</div>
+			<div id="bannerSpan" class="bannerSpan">
+				<!-- class="wow rollIn" -->
+				<span  style="top: 25%;left: 6%;font-size: 3rem;">1000+算法</span>
+				<span  style="top: 35%;left: 11%;font-size: 3rem;">100+场景</span>
+				<span style="top: 49%;left: 8%;font-size: 2rem;">产品状态策略动态分析</span>
+				<span style="top: 60%;left: 7%;font-size: 1.5rem;">持仓管理组合技术分析</span>
+				<span  style="top: 48%;left:25%;font-size: 2rem;">市场投资方向判断</span>
+				<!-- class="wow lightSpeedIn" -->
+				<span  style="top: 23%;left: 57%;font-size: 1.5rem;">可适优质标的挖掘</span>
+				<span  style="top: 29%;left: 72%;font-size: 2rem;">产品管理策略分析</span>
+				<span  style="top: 55%;left: 68%;font-size: 3rem;">算法应用战略体系设计</span>
+				<span  style="top: 64%;left: 25%;font-size: 2.5rem;">资产战略风险管理设计</span>
+				<span  style="top: 30%;left: 23%;font-size: 1.5rem;">资产投向分布策略管理</span>
+				<span style="top: 74%;left: 33%;font-size: 2rem;">交易机会优中选优分析</span>
+				<span  style="top: 30%;left: 39%;font-size: 2rem;">投资策略设计风险管理</span>
+				<span  style="top: 73%;left: 55%;font-size: 2.5rem;">主动投资策略分析比较</span>
+				<span  style="top: 43%;left: 68%;font-size: 2rem;">策略回归以及模拟分析</span>
+				
+				<span  style="top: 35%;left: 55%;font-size: 1.5rem;">全量数据分析与挖掘</span>
+				<span style="top: 55%;left: 55%;font-size: 2rem;">产品比较与策略演算</span>
+				<span  style="top: 46%;left: 85%;font-size: 2rem;">结构资产管理账户</span>
+				<span  style="top: 71%;left: 92%;font-size: 1.5rem;">管理效率透视分析</span>
+				<span  style="top: 90%;left: 62%;font-size: 1.5rem;">观点训练与管理分析</span>
+			</div>
+			<div id="bannerSpan" class="bannerSpan11" style="display:none;">
+				<!-- class="wow bounceInDown" -->
+				<a style="top: 30%;left: 15%;position: absolute; width: -webkit-fill-available;font-size: 2.5rem;">
+					<span style="position: absolute;top: -3rem;">全智能</span>
+					<span style="font-size: 1.6rem;font-style: italic;">智能创造模型，赋能创造价值</span></a>
+
+				<!-- <span style="top: 50%;left: 35%;font-size: 2.5rem;">【全智能】智能创造模型，赋能创造价值</span> -->
+				<a style="top: 48%;left: 50%;position: absolute; width: -webkit-fill-available;font-size: 2.5rem;">
+					<span style="position: absolute;top: -3rem;">全计算</span>
+					<span style="font-size: 1.6rem;font-style: italic;">场景决定算力，计算创造价值</span></a>
+					
+				<a style="top: 88%;left: 40%;position: absolute; width: -webkit-fill-available;font-size: 2.5rem;">
+					<span style="position: absolute;top: -3rem;">全服务</span>
+					<span style="font-size: 1.6rem;font-style: italic;">完善服务体系，服务提升价值</span></a>
+				<!-- <span style="top: 80%;left: 43%;;font-size: 2.5rem;">【全服务】合作实现共赢，服务创造价值</span> -->
+				<!-- class="wow bounceInUp" -->
+				<!-- <span  style="top: 80%;left: 60%;font-size: 4rem;font-family: none;">1000+算法 &emsp;100+模型</span> -->
+			</div>
+			<div id="bannerSpan" class="bannerSpan12" style="display:none;">
+				<!-- class="wow flip" -->
+				<span style="top: 40%;left: 50%;font-size: 4rem;">致力于提升金融行业核心竞争力</span>
+				<span style="top: 55%;left: 50%;font-size: 2.2rem;">5G、云、边缘计算，推动金融行业核心竞争力的快读提升</span>
+				<span style="top: 63%;left: 50%;font-size: 2.2rem;">拥抱金融改革开放，我们有实力迎进来，也有实力走出去!</span>
+			</div>
+		</header>
+	</body>
+</html>
+<script type="text/javascript">
+	var count = 0;
+	var uncount = 0;
+	$(window).load(function() {
+		setInterval("autochange()", 5000);
+	})
+
+	// 根据计数器状态切换响应的皮肤
+	function autochange() {
+		console.log(count);
+		if (count == 0) {
+			skin1();
+		}
+		if (count == 1) {
+			skin2();
+		}
+		if (count == 2) {
+			skin3();
+		}
+		count = count + 1;
+		if (count > 2) {
+			count = 0;
+		}
+	}
+
+	function unautochange() {
+		console.log(uncount);
+		if (uncount == 0) {
+			skin3();
+		}
+		if (uncount == 1) {
+			skin2();
+		}
+		if (uncount == 2) {
+			skin1();
+		}
+		uncount = uncount + 1;
+		if (uncount > 2) {
+			uncount = 0;
+		}
+	}
+
+
+	function skin1() {
+		console.log(count + '  执行')
+		$('.bannerSpan').hide();
+		$('.bannerSpan12').hide();
+		$("#header").removeClass("header11 header12 header13").addClass("header11");
+		$('.bannerSpan11').show();
+	}
+
+	function skin2() {
+		console.log(count + '  执行')
+		$('.bannerSpan11').hide();
+		$('.bannerSpan').hide();
+		$("#header").removeClass("header11 header12 header13").addClass("header12");
+		$('.bannerSpan12').show();
+	}
+
+	function skin3() {
+		console.log(count + '  执行')
+		$('.bannerSpan11').hide();
+		$('.bannerSpan12').hide();
+		$("#header").removeClass("header11 header12 header13").addClass("header");
+		$('.bannerSpan').show();
+	}
+</script>

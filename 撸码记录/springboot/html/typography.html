@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<title> - 排版</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+		<link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>县市级选择</h5>
+							<div class="ibox-tools">
+								<a class="close-link">
+									<i class="glyphicon glyphicon-plus" onclick="addSelect('area')"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="list-group">
+								<a class="list-group-item" name="1" onclick="itemOnclick(this)">
+									<h3 class="list-group-item-heading">广西白龙洞题壁诗</h3>
+								</a>
+
+								<a class="list-group-item" onclick="itemOnclick(this)">
+									<h3 class="list-group-item-heading">丑奴儿</h3>
+								</a>
+
+								<a class="list-group-item" onclick="itemOnclick(this)">
+									<h3 class="list-group-item-heading">夜登金山</h3>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>服务商选择</h5>
+							<div class="ibox-tools">
+								<a class="close-link">
+									<i class="glyphicon glyphicon-plus" onclick="addSelect('operator')"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="list-group">
+								<a class="list-group-item" name="1" onclick="itemOnclick(this)">
+									<h3 class="list-group-item-heading">广西白龙洞题壁诗</h3>
+								</a>
+				
+								<a class="list-group-item" onclick="itemOnclick(this)">
+									<h3 class="list-group-item-heading">丑奴儿</h3>
+								</a>
+				
+								<a class="list-group-item" onclick="itemOnclick(this)">
+									<h3 class="list-group-item-heading">夜登金山</h3>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js?v=2.1.4"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+
+
+		<!-- 自定义js -->
+		<script src="../js/content.js?v=1.0.0"></script>
+
+		<script src="../js/demo/layer-demo.js"></script>
+		<!-- <script src="../js/BootstrapMenu.min.js"></script> -->
+		<script src="../js/plugins/toastr/toastr.min.js"></script>
+
+		<script type="text/javascript">
+			function addSelect(parm) {
+				parent.layer.open({
+					id: 1,
+					type: 1,
+					title: '添加信息',
+					skin: 'layui-layer-rim',
+					area: ['450px', 'auto'],
+					content: '<div class="row" style="width: 420px;  margin-left:7px; margin-top:10px;">' +
+						'<div class="col-sm-12" style="margin-top: 10px">' +
+						'<div class="input-group">' +
+						'<span class="input-group-addon">输入信息:</span>' +
+						'<input id="addInput" type="text" class="form-control">' +
+						'</div>' +
+						'</div>' +
+						'</div>',
+					btn: ['确定', '取消'],
+					btn1: function(index, layero) {
+						addList(parm,layero.find('#addInput').val());
+					},
+					btn2: function(index, layero) {}
+
+				});
+			}
+			
+			function addList(parm,data){
+				console.log(parm);
+				
+				toastr.success('添加成功');
+			}
+			
+			function queryAreaList(){
+				
+			}
+		</script>
+		<script type="text/javascript">
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"progressBar": true,
+				"positionClass": "toast-top-right",
+				"onclick": null,
+				"showDuration": "400",
+				"hideDuration": "1000",
+				"timeOut": "7000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "fadeIn",
+				"hideMethod": "fadeOut"
+			}
+
+			function itemOnclick(data) {
+				console.log(data);
+				parent.layer.open({
+					id: 1,
+					type: 1,
+					title: '修改信息',
+					skin: 'layui-layer-rim',
+					area: ['450px', 'auto'],
+					content: ' <div class="row" style="width: 420px;  margin-left:7px; margin-top:10px;">' +
+						'<div class="col-sm-12" style="margin-top: 10px">' +
+						'<div class="input-group">' +
+						'<span class="input-group-addon">输入信息:</span>' +
+						'<input id="editArea" type="password" class="form-control">' +
+						'</div>' +
+						'</div>' +
+						'</div>',
+					btn: ['修改', '删除'],
+					btn1: function(index, layero) {
+						toastr.success('修改成功');
+					},
+					btn2: function(index, layero) {
+						toastr.success('删除成功');
+					}
+
+				});
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>用户管理</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<link rel="stylesheet" href="css/samples-styles.css">
+	<link rel="stylesheet" href="css/ctsi.css">
+	<style type="text/css">
+		td.alt { background-color: #ffc; background-color: rgba(230, 127, 34, 0.2); }
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		//var uid=4; //全局变量
+	</script>
+	<div class="htmleaf-container">
+		<div class="htmleaf-content">
+			<div class="input-group">
+				<div class="input-group-addon">过滤条件</div>
+				<input class="form-control" type="search" id="input-filter" size="15" placeholder="输入过滤条件"></input>
+				<span class="input-group-addon" style="cursor: pointer;" onclick="openUserEditWin(0)">添加用户</span>
+			</div>
+			<br>
+			<table class="userTable">
+				<thead>
+					<tr>
+			                <th scope="col" title="President Number">用户编号</th>
+			                <th scope="col">用户名</th>
+			                <th scope="col">分行地区</th>
+							<th scope="col">角色等级</th>
+			                <th scope="col">email</th>
+							<th scope="col">操作</th>
+			            </tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	
+	<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="js/jquery.filtertable.min.js"></script>
+	<script>
+	    $(document).ready(function() {
+	        $('table').filterTable({ // apply filterTable to all tables on this page
+	            inputSelector: '#input-filter' // use the existing input instead of creating a new one
+	        });
+	    });
+	</script>
+</body>
+</html>
+<script>
+	$(function () {
+        $.ajax({
+            url: "/user/getUsers",
+            contentType: "application/json;charset=UTF-8",
+            //data:JSON.stringify(params),
+            //dataType:"json",
+            type: "POST",
+            success: function(data){
+                console.log(data);
+                var list = data.data;
+                if(list.length>0){
+					for(var i=0;i<list.length;i++){
+						var area=getArea(list[i].rolepermissions);
+						var role=getRole(list[i].rolepermissions);
+						$('.userTable').append( " <tr>\n" +
+							"<td>"+list[i].id+"</td>\n" +
+							"<td>"+list[i].user_name+"</td>\n" +
+							"<td>"+area.toString()+"</td>\n" +
+							"<td>"+role.toString()+"</td>\n" +
+							"<td>"+list[i].email+"</td>\n" +
+							"<td><button onclick=\"openUserEditWin(this)\">编辑</button><button onclick=\"{if(confirm('确定要删除吗?')) {deleteUser(this); }else {}}\">删除</button></td>\n" +
+							"</tr>");
+					}
+                }
+            },
+            error : function(e) {
+                alert("error !");
+                alert(e);
+            }
+        })
+    })
+	function getArea(data) {
+	    var area =new Array();
+	    for(var i=0;i<data.length;i++){
+	        area[i]=data[i].area;
+		}
+		return area;
+    }
+    function getRole(data) {
+        var role =new Array();
+        for(var i=0;i<data.length;i++){
+            role[i]=data[i].role_name;
+        }
+        return role;
+    }
+    function openUserEditWin(obj) {
+	    if(obj!=0) {
+            var id = $(obj).parent("td").parent("tr").find("td:eq(0)").text();
+        }else {
+	        var id=0;
+		}
+        window.open ("../table/userEdit.html?id="+id+"","","width=800,height=600,top=180px,left=580px, toolbar =no, menubar=no, scrollbars=yes, resizable=no, location=no, status=no");
+    }
+    function selectArea() {
+        $('.inputHide'+data+'').append("<option value='bj'>北京</option>");
+        $('.inputHide'+data+'').append("<option value='tj'>天津</option>");
+    }
+  	function showInput(obj,data) {
+        var id=$(obj).parent("td").parent("tr");
+	    if(data=="name"){
+            id=id.find("td:eq(1)");
+            id.children(0).hide();
+            console.log(id.children(1).find(".inputName"));
+            id.children(1).find('.inputName').show();
+		}
+        if(data=="area"){
+            id = $(obj).parent("td").parent("tr").find("td:eq(2)");
+            $(id).hide();
+        }
+        if(data=="role"){
+            id = $(obj).parent("td").parent("tr").find("td:eq(3)");
+            $(id).hide();
+        }
+        if(data=="email"){
+            id = $(obj).parent("td").parent("tr").find("td:eq(4)");
+            $(id).hide();
+        }
+    }
+    function addUser() {
+		$('.userTable').append( " <tr>\n" +
+						        "<td>id</td>\n" +
+								"<td>用户名</td>\n" +
+            					"<td>分行地区</td>\n" +
+								"<td>角色等级</td>\n" +
+								"<td>email</td>\n" +
+								"<td><button onclick=\"openUserEditWin(this)\">编辑</button><button onclick=\"{if(confirm('确定要删除吗?')) {deleteUser(this); }else {}}\">删除</button></td>\n" +
+								"</tr>");
+    }
+    function deleteUser(obj) {
+        var tr=obj.parentNode.parentNode;
+        var tbody=tr.parentNode;
+        tbody.removeChild(tr);
+        // //只剩行首时删除表格
+        // if(tbody.rows.length==1) {
+        //     tbody.parentNode.removeChild(tbody);
+        // }
+    }
+</script>

@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>实用的弹窗代码-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+body {
+	background-color:#EBEBEB
+}
+.aaa {
+	background-color:#CB4F51;
+	padding:10px;
+	display:block;
+	width:80px;
+	text-align:center;
+	color:#fff;
+}
+.info {
+	display:none;
+	width:150px;
+	height:100px;
+	line-height:100px;
+	text-align:center;
+	position:absolute;
+	top:50%;
+	left:50%;
+	z-index:2;
+	background-color:#fff;
+	margin-top:-100px;
+	margin-left:-50px;
+	border-radius:10px
+}
+.mask {
+	display:none;
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	background-color:rgba(0,0,0,0.4);
+	z-index:1;
+}
+</style>
+</head>
+<body>
+<div class="mask">
+
+</div>
+<div class="info">
+    hello! :)
+</div>
+
+<div class="aaa">
+    点击我
+</div>
+
+<script>
+$(document).ready(function() {
+    //点击
+    $(".aaa").click(function() {
+        $('.info').css('display', 'block');
+        $('.mask').css('display', 'block');
+    });
+
+    $(".mask").click(function() {
+        $('.info').css('display', 'none');
+        $('.mask').css('display', 'none');
+    });
+});
+</script>
+
+</body>
+</html>

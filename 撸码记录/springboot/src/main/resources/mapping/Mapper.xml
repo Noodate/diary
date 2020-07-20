@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.applyforhouse.mapper.mapper">
+    <select id="selectUserPwd" parameterType="String" resultType="String">
+        select password
+        from user
+        where username=#{username}
+    </select>
+    <select id="selectRecord" parameterType="String" resultType="com.example.applyforhouse.bean.Record">
+        select *
+        from login
+        where account=#{account}addLogin
+    </select>
+    <insert id="addRecord" useGeneratedKeys="true" keyProperty="id">
+  	    insert into record
+  	    values (null,#{areaSelect},#{computerName},#{computerCompany},#{name},#{phone},#{company},#{reason})
+    </insert>
+
+    <insert id="addPerson" useGeneratedKeys="true" keyProperty="id">
+  	    insert into person
+  	    values (null,#{nickName},#{gender},#{country},#{province},#{city})
+    </insert>
+
+    <insert id="addRecordPersonAuditor" parameterType="String">
+  	    insert into recordPersonAuditor
+  	    values (#{recordId},#{personId},#{auditorId})
+    </insert>
+
+    <select id="selectAuditorList" resultType="com.example.applyforhouse.bean.Auditor">
+        select *
+        from auditor
+    </select>
+</mapper>

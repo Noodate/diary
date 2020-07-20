@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<title> - FooTable</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="../css/plugins/footable/footable.core.css" rel="stylesheet">
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+		<link rel="stylesheet" href="../css/font-awesome.css">
+
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content animated fadeInRight">
+
+			<div class="container">
+				<div class="row">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>小程序登录记录</h5>
+
+							<div class="ibox-tools">
+								<a class="close-link" id="generate-excel">
+									<i class="fa fa-table"></i>
+								</a>
+							</div>
+						</div>
+
+						<!-- <div class="col-md-3" style="padding:2em 0;">
+						<button type="button" class="btn btn-success btn-block" id="generate-excel"><i class="fa fa-file-excel-o"
+							 aria-hidden="true"></i> 将表格转换为Excel</button>
+					</div> -->
+						<div class="ibox-content">
+							<table id="test_table" class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>名字</th>
+										<th>电话</th>
+										<th>公司</th>
+										<th>参数</th>
+										<th>日期</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+
+
+		<script type="text/javascript" src="../js/jszip.min.js"></script>
+		<script type="text/javascript" src="../js/FileSaver.js"></script>
+		<script type="text/javascript" src="../js/excel-gen.js"></script>
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+		<script src="../js/plugins/footable/footable.all.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/content.js?v=1.0.0"></script>
+		<script>
+			$(document).ready(function() {
+
+				$('.footable').footable();
+				$('.footable2').footable();
+
+			});
+		</script>
+
+		<script>
+			$(function() {
+				var xx = [{
+					id: 1,
+					name: "杨柳柳",
+					Province: "四川",
+					city: "成都",
+					sex: "男",
+					work: "学生",
+					age: '<a href="#">设置未管理员</a>'
+				}, {
+					id: 2,
+					name: "秦晓",
+					Province: "四川",
+					city: "江油",
+					sex: "男",
+					work: "学生",
+					age: '<a href="#">设置未管理员</a>'
+				}, {
+					id: 3,
+					name: "宇峰",
+					Province: "XX",
+					city: "重庆",
+					sex: "女",
+					work: "银行职员",
+					age: '<a href="#">设置未管理员</a>'
+				}, {
+					id: 4,
+					name: "青玉",
+					Province: "河北",
+					city: "石家庄",
+					sex: "男",
+					work: "java工程师",
+					age: '<a href="#">设置未管理员</a>'
+				}]
+
+				function Build() {};
+				Build.prototype.render = function() {
+						$("#test_table tbody").html("");
+						for (i = 0; i < xx.length; i++) {
+							var html = "<tr><td>" + (i + 1) + "</td><td>" + xx[i].name + "</td><td>" + xx[i].Province + "</td><td>" + xx[i]
+								.city + "</td><td>" + xx[i].sex + "</td><td>" + xx[i].work + "</td><td>" + xx[i].age + "</td></tr>";
+							$("#test_table tbody").append(html);
+						}
+					},
+					Build.prototype.clear = function() {
+						$(".modal-body input").val("");
+						$("#myModal").hide()
+					}
+				Build.prototype.init = function() {
+					this.render();
+				}
+				Build.prototype.show = function() {
+					$("#myModal").show();
+				}
+				Build.prototype.hide = function() {
+					$(".modal-body input").val("");
+					$("#myModal").hide()
+				}
+				Build.prototype.getData = function() {
+					var data = $(".modal-body").serializeArray();
+					console.log(data);
+					var str = {
+						id: 0,
+						name: data[0].value,
+						Province: data[1].value,
+						city: data[2].value,
+						sex: data[3].value,
+						work: data[4].value,
+						age: data[5].value
+					}
+					xx.push(str);
+				}
+
+
+				var run = new Build();
+				run.init();
+
+				$("#generate-excel").click(function() {
+					var excel = new ExcelGen({
+						"src_id": "test_table",
+						"show_header": true
+					});
+					excel.generate();
+				});
+			});
+		</script>
+
+
+
+	</body>
+
+</html>

@@ -1,0 +1,327 @@
+<html>
+<head>
+    <script src="../jsp/js/jquery-1.11.0.min.js"></script>
+    <script src="../js/xb_scroll.js?version=1.0"></script>
+
+
+    <title>信贷项目远程视频监控</title>
+    <link href="../jsp/resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="../jsp/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="../jsp/data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="../jsp/data/style.css" type="text/css" rel="stylesheet"/>
+    <link href="../jsp/files/index/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="../jsp/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <link href="../jsp/css/ctsi_dhjk.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/flexDate.css" type="text/css" rel="stylesheet"/>
+    <script src="../js/flexDate.js"></script>
+    <script src="../jsp/js/ctsi_dhjk.js"></script>
+    <link href="../jsp/css/dataJquery.css" type="text/css" rel="stylesheet"/>
+    <script src="js/data.js"></script>
+    <link href="../jsp/css/downShowMenu.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body style='overflow:-Scroll;overflow-x:hidden' >
+<script type="text/javascript">
+    var winwidth=document.documentElement.clientWidth;
+    var winheight=document.documentElement.clientHeight;
+    //newlinenum是每行显示的文件夹个数，255是左侧menu的宽度，15是table距离左侧距离，20是滚动条宽度，110是文件夹的间隔30+文件夹div的宽度72
+    var newlinenum=parseInt((winwidth-255-15-20)/110);
+    //视频图片个数
+    var imgvideolinenum=parseInt((winwidth-255-15-20)/170);
+</script>
+<div id="base" >
+    <div id="divList" style="height: 80px;background-color: #ffffff;); ">
+        <div class="list">
+            <a style="position:absolute;left: 20px;top:18px;color: #2651a9;font-size: 30px"  onclick="window.open ('../map/mapworld.html')">信贷项目远程视频监控</a>
+
+             <nav id="person_nav" style="left: 88%;position: absolute;">
+                <ul>
+                    <li>
+                         <!--下面a  onclick="showOrHideperson_box()"-->
+                        <a id=""
+                           style="cursor: pointer;position:absolute;top: 0;color: #2651a9;font-size: 20px;">
+                            <img  src="../jsp/images/person.png"   style="position: absolute;width: 40px;top: 18px;">
+                            <i class='fa fa-angle-down'></i>
+                        </a>
+                        <ul style="cursor: pointer;text-align: center;position: absolute;left:-35px">
+                            <li> <a style=" color:white;"   onclick="openUserMainWin()">用户管理</a></li>
+                            <li><a style=" color: white;"   onclick="openRoleEditWin()">角色管理</a></li>
+                            <li><a style=" color: white;"   onclick="showCollection()">收藏夹</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <a style="position:absolute;left:80%;top:28px;color: #2651a9;font-size: 20px;">&nbsp;欢迎您!</a>
+            <a href="../index.html"  style="position:absolute;left: 95%;color: #2651a9;font-size: 20px;">
+            <img src="../jsp/images/openclose.png" alt="注销" style="position: absolute;width: 40px;top: 18px;">
+        </a>
+        </div>
+
+    </div>
+    <div class="view-sidebar dropdown">
+        <div class="sidebar-content">
+            <div class="sidebar-nav sidebar-nav-fold">
+                        <div class="trueMenu">
+                        </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(".sidebar-title").on('click', function() {
+            if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+                $(this).next().slideDown(200);
+                $(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+            } else {
+                $(this).next().slideUp(200);
+                $(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+            }
+        });
+    </script>
+
+    <!-- Unnamed (动态面板) -->
+    <div id="u2" class="ax_default">
+        <div id="u2_state0" class="panel_state" data-label="" style="overflow: hidden;background-size: 100% 100%; background-image: url('../jsp/images/mainBackgroudImg.jpg')">
+            <div class="bgColor">
+
+                <!--onclick="addFileBox()"-->
+                <span id="addFileBox" onclick="newCinFile()" class="addFileBox"  >添加文件夹</span>
+
+                <nav style="  position: absolute;  left: 354px;">
+                    <ul>
+                        <li>
+
+                            <a id="moveFileBox" onclick="moveFileBox()" class="moveFileBox"  style="padding: 3px 20px;width:120px;left: 0px;" >移动文件
+                                <i class='fa fa-angle-down'></i>
+                            </a>
+
+                            <ul id="movefileName" style="cursor: pointer; display: none; left: 0px;top: 50px;position: absolute; height: 115px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                                <div class="con-ret" ></div>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </nav>
+
+
+
+                <span class="spanDownCinBack">
+                    <a onclick="upToDown()" class="sel_btn">下载</a>
+                    <a id="cin" onclick="cin()"  class="sel_btn">收藏</a>
+                    <a id="cout" onclick="cout()"  class="sel_btn" >删除</a>
+                    <a onclick="back()" class="sel_btn">返回</a>
+                </span>
+
+                <input type="hidden" id="menuHide" value="0" style="height: 2px;">
+                <!--//如果有值，则代表点进了收藏夹里的文件夹下，存的是文件夹的目录-->
+                <input type="hidden" id="fileHide" value="0" style="height: 2px;">
+                <span class="spanData">
+                    <a id="Amonth" class="sel_btn"  onclick="query('month')">本月</a>
+                    <a   id="Ayear" class="sel_btn" onclick="query('year')">本年</a>
+                    <a id="Aall" class="sel_btn" onclick="query('all')">全部</a>
+                    <a id="Asearch" class="sel_btn" onclick="showOrHidebox()">查询∨</a>
+                </span>
+
+                <div class="box"  value="0">
+                    <div class="con-ret" ></div>
+                    <div class="con">
+                        <div class="box_div" >
+                            <!--<input type="text" readonly class="textBox flexDate" value="new Date()" id="beginTime">-->
+                            <!--<input type="text" readonly class="textBox flexDate" value="new Date()" id="endTime">-->
+                            <!--<button class="selectButton"  onclick="queryByTime()">查询</button>-->
+                            <div id="datadiv" style="text-align: center;position: absolute;top: 8px;">
+                                <div id='schedule-box' class="boxshaw">
+                                </div>
+                                <div>
+                                    <input id='h3Ele' style="display: none" value="2019-2-19"  >
+                                </div>
+                            </div>
+                            <div style="text-align: center;position: absolute;left: 330px;top: 8px;">
+                                <div id='schedule-box2' class="boxshaw">
+                                </div>
+                                <div>
+                                    <input id='h3Ele2' style="display: none" value="2019-2-20"  >
+                                </div>
+                            </div>
+                            <button id="databutton1" style="position: absolute;left: 250px; width: 50px;top: 360px;color: black;" class="sel_btn" onclick="showOrHidebox()">取消</button>
+                            <button id="databutton2" style="position: absolute; left:350px; width: 50px;top: 360px;color: black;"  class="sel_btn"  onclick="queryByTime()">查询</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="movefile_box" >-->
+                    <!--<div class="movefile_con-ret" ></div>-->
+                    <!--<div class="movefile_con">-->
+                        <!--<select id="movefileName" class="movefile_Name"   >-->
+                        <!--</select>-->
+                        <!--<button class="movefile_button"  onclick="moveCinFile()">确定</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+
+            <div id="u2_state0_content" class="panel_state_content scroll_index " style="width: 102%;height: 90%;overflow-x: hidden;overflow-y: auto;">
+                                    <table align="center" title="" style="position: absolute;left: 15px;"
+                                           cellSpacing="30" cellPadding="0" bordercolor="#e8e8e8" border="0" class="overTable">
+                                    </table>
+                                    <table  align="center" title="" style="display: none"
+                                          cellSpacing="15" cellPadding="0" bordercolor="#e8e8e8" border="0" class="overTable2">
+                                    </table>
+                <!-- 等待框1-->
+                <div class="animate" style="display: none">
+                    <div class="animate-row">
+                        <div class="behaviour beha1"></div>
+                        <div class="behaviour beha2"></div>
+                        <div class="behaviour beha3"></div>
+                        <div class="behaviour beha4"></div>
+                    </div>
+                </div>
+                <!-- 等待框2-->
+                <div id="loadingDi" style="position: absolute;z-index: 5000;display: none">
+                    <!--<div style="border: 1px solid #4083c2;width:90px;padding-left:5px;line-height: 32px;height: 32px;top:50%;margin-top: -15px;left:50%;margin-left: -45px;position: fixed;background-color: #ffffff;">-->
+                    <div style="top:40%;left:40%;position: fixed;">
+                        <img src="images/loading.gif" >
+                    </div>
+                    <!--<div style="font-size: 10pt;float: left">计算中...</div>-->
+                    <!--</div>-->
+                </div>
+                <!-- 等待框3-->
+                <div id="loadingDiv" style="position: absolute;z-index: 5000;display: none">
+                    <div style="top:40%;left:40%;position: fixed;">
+                        <img src="images/loading3.gif">
+                    </div>
+                    <!--<div style="font-size: 10pt;float: left">计算中...</div>-->
+                    <!--</div>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class='pop' style="display:none;">
+        <div class="pop-bg" onclick="hidevideoplay()"></div>
+        <div class="pop-content" >
+            <video class="video-view" src="" autoplay="autoplay" controls="controls" ></video>
+        </div>
+    </div>
+
+
+    <!-- 图片放大后的遮罩层 -->
+    <div id="outerdiv" class="img_bg" >
+        <!-- 放大后的图片 -->
+        <div id="innerdiv" class="img_bigImgdiv" >
+            <img id="bigimg" class="img_bigImg"  src="" />
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    $(function(){
+        winwidth=document.documentElement.clientWidth;
+        winheight=document.documentElement.clientHeight;
+        $('#divList').css("width",winwidth);
+        $('#u2_state0').css("width",winwidth-255);
+        $('#person_nav').css("width",winwidth);
+        $('.dropdown').css("min-height",winheight-80);
+        mainHeightToMenu();
+        var Request = new Object();
+        Request  = GetRequest();
+        var id = Request["id"];
+        getMenu(id);
+        function getMenu(id) {
+            var params = {"id": id, "parent_id": "0"};
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "/menu/getMenu",
+                data: params,
+                success: function (data) {
+                    for (var i=0;i<data.length;i++)
+                    {
+                        $('.trueMenu').append('<div class="oneMenuA'+data[i].id+'"><a class="oneMenuA" id="'+data[i].id+'" onclick="comeTwoMenu(this)" style="cursor: pointer;" name="'+id+'" >'+data[i].menu_name+'</a></div>');
+                    }
+                    // var list = data;
+                    // window.location.href = "index.jsp?pathlist=" + list;
+                },
+                error: function (e) {
+                    alert("异常！");
+                }
+            });
+        }
+    })
+    window.onresize = function(){
+        winwidth=document.documentElement.clientWidth;
+        winheight=document.documentElement.clientHeight;
+        $('#divList').css("width",winwidth);
+        $('#u2_state0').css("width",winwidth-255);
+        $('#person_nav').css("width",winwidth);
+        $('.dropdown').css("height",winheight);
+        newlinenum=parseInt((winwidth-255-15-20)/110);
+        imgvideolinenum=parseInt((winwidth-255-15-20)/170);
+    }
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    var mySchedule = new Schedule({
+        el: '#schedule-box',
+        //date: '2018-9-20',
+        clickCb: function (y,m,d) {
+            $('#h3Ele').val( y+'-'+m+'-'+d);
+        },
+        nextMonthCb: function (y,m,d) {
+            $('#h3Ele').val( y+'-'+m+'-'+d);
+        },
+        nextYeayCb: function (y,m,d) {
+            $('#h3Ele').val( y+'-'+m+'-'+d);
+        },
+        prevMonthCb: function (y,m,d) {
+            $('#h3Ele').val( y+'-'+m+'-'+d);
+        },
+        prevYearCb: function (y,m,d) {
+            $('#h3Ele').val( y+'-'+m+'-'+d);
+        }
+    });
+    var mySchedule = new Schedule({
+        el: '#schedule-box2',
+        //date: '2018-9-20',
+        clickCb: function (y,m,d) {
+            $('#h3Ele2').val( y+'-'+m+'-'+d);
+        },
+        nextMonthCb: function (y,m,d) {
+            $('#h3Ele2').val( y+'-'+m+'-'+d);
+        },
+        nextYeayCb: function (y,m,d) {
+            $('#h3Ele2').val( y+'-'+m+'-'+d);
+        },
+        prevMonthCb: function (y,m,d) {
+            $('#h3Ele2').val( y+'-'+m+'-'+d);
+        },
+        prevYearCb: function (y,m,d) {
+            $('#h3Ele2').val( y+'-'+m+'-'+d);
+        }
+    });
+</script>
+<script>
+    $('nav li').hover(
+        function() {
+            $('ul', this).stop().slideDown(200);
+        },
+        function() {
+            $('ul', this).stop().slideUp(200);
+        }
+    );
+</script>

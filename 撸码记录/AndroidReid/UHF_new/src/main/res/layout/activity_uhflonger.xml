@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/linearlayout10"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/title_bg"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayout10"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <!--连接模块-->
+        <Button
+            android:id="@+id/button_connect"
+            style="?android:attr/buttonStyleSmall"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/connect" />
+        <!--更多操作-->
+        <Button
+            android:id="@+id/button_more_operation"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="@string/_more_operation" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true"
+            android:layout_marginTop="45dp">
+
+        <ListView
+                android:id="@+id/listView_epclist"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:overScrollMode="always"
+                android:scrollbars="horizontal|vertical">
+
+        </ListView>
+
+    </HorizontalScrollView>
+
+
+
+    <ListView
+        android:id="@+id/listView_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_below="@+id/receive_txt"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/corners_background"
+        android:divider="#0a0f0b"
+        android:dividerHeight="1dp" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+
+        <!--导入-->
+        <Button
+                android:id="@+id/button_export"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/export_read" />
+
+        <!--开始盘存-->
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/inventory" />
+
+        <!--导出-->
+        <Button
+            android:id="@+id/button_out"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/outexcle" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

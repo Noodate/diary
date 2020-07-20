@@ -1,0 +1,226 @@
+.layout-header-bar {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  height:90px !important;
+}
+.ivu-layout-sider{
+  background:none;
+}
+.ivu-layout{
+  background:none;
+}
+//伸缩按钮
+
+.rotate-icon {
+  transform: rotate(-90deg);
+}
+
+//侧边导航动画
+.menu-item {
+  i {
+    transform: translateX(0px);
+    transition: font-size .2s ease, transform .2s ease;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-right: 12px;
+  }
+}
+
+.collapsed-menu {
+  i {
+    transform: translateX(5px);
+    transition: font-size .2s ease, transform .2s ease;
+    vertical-align: middle;
+    font-size: 22px;
+  }
+}
+.main {
+  width: 100%;
+  overflow-x: hidden;
+  .sider {
+    background-color: #fff;
+    z-index: 100;
+    margin-top:12px;
+  }
+  .ivu-col {
+    transition: width .2s ease-in-out;
+  }
+  .unlock-con {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 11000;
+  }
+  .sidebar-menu {
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background-color:rgba(56, 89, 139, 1);
+    //background-color: $bg-sidebar;
+    .sidebar-menu-con {
+      height: auto;
+    }
+  }
+  .main-container {
+    position: relative;
+    left: 0;
+    top: 0;
+    min-height: 100%;
+    background-color: #f0f0f0;
+    z-index: 0;
+    width:100%;
+    overflow-x: scroll;
+  }
+  .layout-text {
+    display: inline-block;
+    white-space: nowrap;
+    //position: absolute;
+  }
+  .main-hide-text .layout-text {
+    display: none;
+  }
+  &-content-container {
+    position: relative;
+  }
+  &-breadcrumb {
+    padding: 8px 15px 0;
+  }
+  &-menu-left {
+    background: #464c5b;
+    height: 100%;
+  }
+  &-header {
+    height: 90px;
+    box-shadow: 0 2px 1px 1px rgba(100, 100, 100, .1);
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display:flex;
+    align-items: center;
+    .logo{
+      line-height:10px;
+      margin:0 10px;
+      img{
+        width:50px;
+        height:auto;
+      }
+    }
+    .text {
+      display: inline-block;
+      font-size:30px;
+      color:$font-white;
+      transition: all .3s;
+    }
+    .navicon-con {
+      margin-left: 10px;
+      i{
+        color:#fff;
+      }
+    }
+    .header-middle-con {
+      position: absolute;
+      left: 60px;
+      top: 0;
+      right: 340px;
+      bottom: 0;
+      line-height: 44px;
+      overflow: hidden;
+    }
+    .header-avator-con {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      height: 40px;
+      width: 300px;
+      line-height: 40px;
+      margin-top:-20px;
+      .user-dropdown {
+        &-menu-con {
+          //position: absolute;
+          //right: 15px;
+          //top: 0;
+          //width: 180px;
+          //height: 100%;
+          .ivu-dropdown-rel{
+            a{
+              color:#fff;
+            }
+          }
+          .main-user-name {
+            display: inline-block;
+            width: 90px;
+            word-break: keep-all;
+            white-space: nowrap;
+            vertical-align: middle;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: right;
+          }
+        }
+        &-innercon {
+          height: 100%;
+          padding-right: 14px;
+        }
+      }
+    }
+  }
+  .single-page-con {
+    .single-page {
+      margin: 10px;
+    }
+  }
+}
+.mobileMode{
+  .logo{
+    img{
+      width:30px;
+      height:30px;
+      margin: 0;
+    }
+  }
+  .text {
+    font-size:16px;
+    width:190px;
+    line-height:25px !important;
+  }
+}
+.logo-con {
+  &-container {
+    height: 75px;
+    position: relative;
+    transition: all .3s;
+    background: #002140;
+    overflow: hidden;
+    display:flex;
+    .logo {
+      width: 40px;
+      height: 40px;
+      margin:auto;
+    }
+    .text {
+      display: inline-block;
+      font-size:14px;
+      color:$font-white;
+      margin:auto;
+      width:145px;
+      transition: all .3s;
+    }
+    .minImg {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+    }
+    h2 {
+      color: #fff;
+      font-size: 16px;
+      margin: 0 0 0 12px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+

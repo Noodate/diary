@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#EBEBEB"
+   >
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/uid"/>
+    <EditText 
+        android:id="@+id/editText_14443auid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        />
+    <!-- <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="扇区:"/>
+    <EditText 
+        android:id="@+id/editext_sector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/edittext_sector_hint"
+        android:text=""/> -->
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/read_block"/>
+    <EditText 
+        android:id="@+id/edittext_14443a_block_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01"
+        android:hint="01~04"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/block_start_address"/>
+    <EditText 
+        android:id="@+id/edittext_block_start_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01"
+        android:hint="00~3F"/>
+    
+</LinearLayout>   
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"/>
+    <EditText 
+        android:id="@+id/edittext_14443a_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="12"
+        android:text="@string/init_password"
+        />
+    <!-- <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password_type"/> -->
+    <CheckBox 
+        android:id="@+id/checkBox_a"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/a"/>
+    <CheckBox 
+        android:id="@+id/checkBox_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b"/>
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/read_data"/>
+    <EditText 
+        android:id="@+id/editText_read_14443a_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:editable="false"
+        />
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/write_data"/>
+    <EditText 
+        android:id="@+id/editText_write_14443a_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="00000000000000000000000000000000"
+        />
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#C6C6FF">
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wallet_mode"
+        android:textSize="12sp"/>
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#C6C6FF"
+    >
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sector"/>
+    <EditText 
+        android:id="@+id/edittext_wallet_sector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/edittext_sector_hint"
+        android:text="03"
+        />
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initval"/>
+    <EditText 
+        android:id="@+id/editText_wallet_initval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/f_bytes"
+        android:text="0F0F0F0F"/>
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#C6C6FF"
+    >
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"/>
+    <EditText 
+        android:id="@+id/edittext_wallet_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/f_bytes"
+        android:text="@string/edittext_wallet_add"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/redu"/>
+    <EditText 
+        android:id="@+id/edittext_wallet_redu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/f_bytes"
+        android:text="@string/edittext_wallet_redu"
+        />
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#C6C6FF">
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_or_redu_ed"/>
+    <EditText 
+        android:id="@+id/editText_wallet_add_or_redu_ed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/_00000000"
+        android:editable="false"
+        />
+     <Button 
+        android:id="@+id/button_init_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initval_wallet_14443a"
+        />
+    <Button
+        android:id="@+id/button_show_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_balance" 
+        />
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#C6C6FF">
+   
+    <Button 
+        android:id="@+id/button_add_wallet"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/add"/>
+    <Button 
+         android:id="@+id/button_redu_wallet"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/redu"/>
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <Button 
+        android:id="@+id/button_find14443a"
+        android:layout_width="0sp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/findcard"/>
+    <Button 
+        android:id="@+id/button_read_14443a"
+        android:layout_width="0sp" 
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/read_data_button"/>
+</LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/button_write_14443a"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/write_data_button" />
+
+    
+	<Button
+        android:id="@+id/button_clear_14443a"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/clear" 
+        />
+</LinearLayout>
+
+</LinearLayout>

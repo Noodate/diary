@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/ctsi_dhjk.js"></script>
+		<link href="css/ctsi_dhjk.css" type="text/css" rel="stylesheet"/>
+		<title></title>
+	</head>
+	<body>
+		<section>
+			<img style='cursor: pointer' name="http://106.13.109.215/media/video/1.mp4" onclick='video_play(this)' class='img-size'  src="img/6.png">
+			<img style='cursor: pointer' name="http://106.13.109.215/media/audio/1.mp3" onclick='video_play(this)' class='img-size'  src="img/6.png">
+			<img style='cursor: pointer' name="http://106.13.109.215/media/image/1.jpg"  onclick='img_play(this)' class='img-size'  src="http://106.13.109.215/media/image/1.jpg">
+			<div class='pop' style="display:none;">
+			    <div class="pop-bg" onclick="hidevideoplay()"></div>
+			    <div class="pop-content" >
+			        <video class="video-view" src="" autoplay="autoplay" controls="controls" ></video>
+			    </div>
+			</div>
+			<div class='pop2' style="display:none;">
+			    <div class="pop-bg2" onclick="hideImg()"></div>
+			    <div class="pop-content2" >
+			        <img class="image-view" src=""></img>
+			    </div>
+			</div>
+		</section>
+	</body>
+</html>

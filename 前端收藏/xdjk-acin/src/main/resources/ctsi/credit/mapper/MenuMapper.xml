@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ctsi.credit.mapper.MenuMapper">
+
+    <resultMap id="seeShare" type="com.ctsi.credit.entity.MenuBank">
+        <id column="id" property="id" />
+        <result column="bank_name" property="bank_name" />
+        <result column="cid" property="cid" />
+        <result column="bank_path" property="bank_path" />
+    </resultMap>
+
+   <!-- 根据分行id查询相关的项目信息-->
+   <select id="getMenuBank" resultMap="seeShare">
+      select * from MenuBank
+   </select>
+
+    <!--根据分行cid查询相关的项目信息-->
+    <select id="getProject" parameterType="String" resultType="com.ctsi.credit.entity.MenuProject">
+      select * from MenuProject where cid = #{cid}
+   </select>
+
+    <!--根据角色id，查询该角色下的根节点菜单-->
+    <!--select * from ssm_menu where menu_id in (select menu_id from ssm_user_menu where user_id = #{id}) and parent_id = #{parent_id}-->
+   <select id="getMenuByUser" parameterType="java.util.HashMap" resultType="com.ctsi.credit.entity.Menu">
+        select * from  ssm_menu where id in (select a.menu_id from ssm_role_menu a,
+        (select role_number,area_id from ssm_role_area_jurisdiction where id = #{id}) b
+        WHERE a.role_number = b.role_number and a.area_id = b.area_id) and parent_id = #{parent_id};
+   </select>
+
+
+
+</mapper>

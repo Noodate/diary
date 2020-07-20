@@ -1,0 +1,258 @@
+body::-webkit-scrollbar {
+	display: none;
+}
+
+#header {
+	/* height: calc(101vh); */
+	height: 600px;
+	background-size: 100% 100%;
+}
+
+.header {
+	background-image: url(../images/ctsi/banner.png);
+}
+
+.header11 {
+	background-image: url(../images/ctsi/banner11.png);
+}
+
+.header12 {
+	background-image: url(../images/ctsi/banner12.png);
+}
+
+.header2 {
+	background-image: url(../images/ctsi/banner2.png);
+}
+
+#bannerSpan span {
+	position: absolute;
+	color: white;
+	/* font-family: monospace; */
+	text-shadow: 1PX 1PX 1PX white;
+}
+
+.header_cover_fix {
+	/* position: fixed; */
+	height: 130px;
+	padding-top: 30px;
+	background-color: rgb(0, 0, 0, 0.2);
+	width: 100%;
+	z-index: 1;
+}
+
+.header_cover {
+	position: absolute;
+	width: 100%;
+}
+
+.pages {
+	position: relative;
+	top: 30px;
+}
+
+.logo_size {
+	width: 200px;
+}
+
+.header_span {
+	color: white;
+	font-size: 38px;
+	font-family: cursive;
+	font-weight: bold;
+	border-left: 1.5px solid #fff;
+	padding: 7px 0 7px 13px;
+	margin-left: 20px;
+}
+
+.header_ul {
+	/* position: relative;
+	left: 200px; */
+}
+
+.header_ul li a {
+	/* border: 1px solid white;
+	padding: 8px; */
+	font-size: 15px;
+}
+
+.header_ul img {
+	margin-right: 5px;
+}
+
+.header_speak {
+	position: absolute;
+	top: 250px;
+	left: 200px;
+	display: grid;
+	color: white;
+}
+
+.header_speak span {
+	margin-bottom: 40px;
+}
+
+.header_speak_spanBig {
+	font-size: 40px;
+}
+
+.header_speak a {
+	background-image: url(../images/ctsi/bd_white.png);
+	background-size: 100% 100%;
+	width: 120px;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	color: #fffff;
+	cursor: pointer;
+}
+
+.fadeInRight {
+	text-align: right;
+}
+
+.fadeInLeft {
+	text-align: left;
+}
+
+.col-sm-6 a {
+	background-image: url(../images/ctsi/bd_blue.png);
+	background-size: 100% 100%;
+	width: 120px;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	margin-top: 20px;
+}
+
+.col-sm-5 a {
+	background-image: url(../images/ctsi/bd_blue.png);
+	background-size: 100% 100%;
+	width: 120px;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	margin-top: 20px;
+}
+
+p img {
+	width: 18px;
+	margin-right: 15px;
+}
+
+
+#footer {
+	background-image: url(../images/ctsi/page_foot.png);
+	background-size: 100% 100%;
+	height: 45px;
+	margin-top: 70px;
+}
+
+/* .row_span {
+	display: flex;
+
+} 
+
+ .row_span div {
+	width: 250px;
+}
+
+.row_span div:first-child {
+	margin-right: 220px;
+}
+
+.row_span div:last-child {
+	margin-left: 210px;
+}
+
+.row_span p {
+	margin-bottom: 15px;
+	font-weight: bold;
+} */
+
+h3 {
+	color: #143D78;
+}
+
+.row_h3 {
+	border-bottom: 1px solid;
+	width: 73px;
+	font-weight: bold;
+	height: 28px;
+}
+
+
+.image_size {
+	height: 350px;
+	width: 500px;
+}
+
+.dropdown_a {
+	height: 200px;
+}
+
+.img_size {
+	height: 380px;
+	width: 600px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.cutBanner {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+}
+
+.circle {
+	width: 40px;
+	height: 40px;
+	background: rgb(255, 255, 255, 0.5);
+	border-radius: 50px;
+
+	cursor: pointer;
+	text-align: center;
+	line-height: 35px;
+}
+
+.leftCut {
+	position: absolute;
+}
+
+.rightCut {
+	position: absolute;
+	right: 0px;
+}
+
+.cutBannerSpan {
+	font-size: 30px;
+	color: blue;
+}
+
+.changeColor {
+	/* border-bottom: 1rem solid ;
+	border-image: linear-gradient(#BA356, #83C20);
+	border-image: -webkit-linear-gradient(red, yellow) 30 30;
+	border-image: -moz-linear-gradient(red, yellow) 30 30;
+	border-image: linear-gradient(#C0A0A, #8BF19) 30 30; */
+}
+
+.financial_span p {
+	margin: 0;
+}
+
+.unstyled li {
+	font-family: serif;
+	margin-top: 1rem;
+	font-size: 1.6rem;
+}
+
+.financial_h3 {
+	font-size: 2.2rem;
+	margin-bottom: 2rem;
+}

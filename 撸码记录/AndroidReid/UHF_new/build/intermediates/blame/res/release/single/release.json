@@ -1,0 +1,238 @@
+[
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_iso1800_6c.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\iso1800_6c.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_list_item134k.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\list_item134k.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fragment_epc.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fragment_epc.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_nfc_layout_spinnar_15693uid.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\nfc_layout_spinnar_15693uid.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_psam_m1_card.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\psam_m1_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_setting_power.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\setting_power.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_dialog_name.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\dialog_name.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_listview_item.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\listview_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_psam_iso15693card.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\psam_iso15693card.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_keytest43.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_keytest43.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fragment_read_write.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fragment_read_write.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_nfc_activity_iso15693.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\nfc_activity_iso15693.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_14443a.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_14443a.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_lf.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_lf.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_psam_main.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\psam_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fragment_reserve.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fragment_reserve.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_setting_activity.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\setting_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_tab_titil.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\tab_titil.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_splitlineview.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\splitlineview.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_listitemview_inv.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\listitemview_inv.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_keytest40.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_keytest40.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fragment_epc_special.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fragment_epc_special.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_keytest901.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_keytest901.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_listview_item2.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\listview_item2.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_nfc_listview_item.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\nfc_listview_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_demo_inventory.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_demo_inventory.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_15693.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_15693.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_keytest50.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_keytest50.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fp_db_option_activity.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fp_db_option_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_uhf.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_uhf.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fp_help.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fp_help.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_1d2d.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_1d2d.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_icon_base.png.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\drawable-hdpi\\icon_base.png"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_demo_inventory2.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_demo_inventory2.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\menu_main.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_corners_background.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\drawable-hdpi\\corners_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fragment_lock_other.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fragment_lock_other.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_nfc_activity_inventory_card.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\nfc_activity_inventory_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_more.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_more.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_uhflonger.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_uhflonger.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_fragment_lock_reserve.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\fragment_lock_reserve.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_serialport.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_serialport.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_input.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_input.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_psam_ucpu.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\psam_ucpu.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_setting.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_setting.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_simple_spinner_item.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\simple_spinner_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_listview_input_item.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\listview_input_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_hf.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_hf.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\raw_msg.mp3.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\raw\\msg.mp3"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\menu_version.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\menu\\version.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_activity_keytest.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\activity_keytest.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_nfc_activity_main.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\nfc_activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_help.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\help.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_psam.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\psam.xml"
+    },
+    {
+        "merged": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\build\\intermediates\\res\\merged\\release\\layout_nfc_activity_iso14443a.xml.flat",
+        "source": "C:\\Users\\xiao3\\Desktop\\AndroidReid\\UHF_new\\src\\main\\res\\layout\\nfc_activity_iso14443a.xml"
+    }
+]

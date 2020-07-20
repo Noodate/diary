@@ -1,0 +1,124 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/editTextInfo"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:lineSpacingExtra="4dp"
+            android:layout_weight="4"
+            android:gravity="top"
+            android:background="@drawable/corners_background" >
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FontStyle"
+                android:text="@string/serialport" />
+
+            <Spinner
+                android:id="@+id/spinnerSerialport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FontStyle"
+                android:text="@string/buadrate" />
+
+            <Spinner
+                android:id="@+id/spinnerBuadrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FontStyle"
+                android:text="@string/power" />
+
+            <Spinner
+                android:id="@+id/spinnerPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <CheckBox
+                android:id="@+id/checkBoxHexRecv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hex_recv" />
+
+            <CheckBox
+                android:id="@+id/checkBoxHexSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hex_send" />
+            <Button
+                android:id="@+id/buttonOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/open" />
+
+            <Button
+                android:id="@+id/buttonClear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/clear" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <AutoCompleteTextView
+            android:id="@+id/editTextSend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:background="@drawable/corners_background"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            >
+
+        </AutoCompleteTextView>
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/send" />
+
+    </LinearLayout>
+
+</LinearLayout>

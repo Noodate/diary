@@ -1,0 +1,411 @@
+html,
+body {
+	width: 100%;
+	/* overflow: scroll; */
+	/* min-height: 101%; */
+	overflow-x: hidden;
+	max-height: 99%;
+	/*overflow: hidden;*/
+	/* overflow-x: hidden; */
+}
+
+.bg {
+	position: absolute;
+	/* top: 0;
+	left: 0px; */
+	width: 100%;
+	/* height: calc(100vh); */
+}
+
+.bg_image {
+	width: 100%;
+	height: 100%;
+}
+
+.explain {
+	/*width:30%;*/
+	/*margin-right:5%;*/
+	/*margin-left:1%;*/
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 3%;
+	left: 0;
+	min-height: 405px;
+}
+
+.MobleVideo {
+	border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+	height: 80px;
+	top: 10px;
+	position: relative;
+}
+
+@media (max-height:1999px) and (max-width:1025px) {
+	.bg {
+		height: 2000px;
+	}
+}
+
+@media (min-height:2000px) {
+	.bg {
+		height: 100%;
+	}
+}
+
+/* 手机 */
+@media (max-width:1025px) {
+	.zns_image img {
+		width: 250px;
+	}
+
+	.col-lg-8 {
+		padding: 0;
+	}
+
+	.PCVideo {
+		display: none;
+	}
+
+	.describe {
+		position: relative;
+		height: 130px;
+		top: 20px;
+		border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+		margin-bottom: 100px;
+		padding: 10px;
+	}
+
+	.describe_title {
+		font-size: 40px;
+		margin-bottom: 5px;
+		font-weight: bold;
+	}
+
+	.describe_time {
+		font-size: 30px;
+	}
+
+	.explain {
+		min-height: 600px;
+	}
+
+	.bg {}
+
+	.ctsi_logo {
+		display: none;
+	}
+
+	.banner {
+		background-image: url(../image/banner.jpg);
+		width: 100%;
+		height: 600px;
+		background-size: 100% 100%;
+	}
+
+	.videoName {
+		font-size: 50px;
+		margin-top: 20px;
+		text-align: center;
+		display: none;
+	}
+
+	/* .explain .content {
+		background-color: rgba(255, 255, 255, 0.1);
+		color: white;
+	} */
+
+	.content_title {
+		font-size: 40px;
+	}
+
+	.content_main {
+		font-size: 40px;
+		/* text-indent: 60px; */
+		padding: 30px 50px;
+		color: gray;
+	}
+
+	.pwdSpan {
+		font-size: 60px;
+	}
+
+	.inputWrap input {
+		width: 600px;
+		height: 100px;
+		font-size: 40px;
+		line-height: 40px;
+	}
+
+	.buttonWrap button {
+		width: 450px;
+		height: 140px;
+		font-size: 50px;
+		position: relative;
+		top: 50px;
+	}
+
+	.pwdTest div {
+		margin-bottom: 30px;
+	}
+
+	.pwdTest {
+		margin-top: -250px;
+		margin-left: -360px;
+	}
+
+	.tech_company {
+		position: relative;
+		text-align: center;
+		/* left: 50%; */
+		/* margin-left: -160px; */
+		/* color: white; */
+		top: 50px;
+		/* width: 400px; */
+		margin: 35px auto;
+	}
+
+	.tech_company div {
+		font-weight: bold;
+		font-size: 30px;
+		margin-top: 10px;
+	}
+
+	.tech_company span {
+		font-size: 30px;
+		position: relative;
+		color: gray;
+		top: 30px;
+	}
+
+	.video_button button {
+		width: 49%;
+		margin: 0.2%;
+		font-size: 40px;
+		border: none;
+		background-color: transparent;
+	}
+}
+
+/* PC */
+@media (min-width:1025px) {
+	.pwdSpan {
+		font-size: 4.5rem;
+		font-weight: bold;
+	}
+
+	.tech_company span {
+		display: none;
+	}
+
+	.MobleVideo {
+		display: none;
+	}
+
+	.zns_image {
+		top: 20px;
+		/* padding: 5%; */
+	}
+
+	.zns_image img {
+		width: 100px;
+	}
+
+	.describe {
+		position: relative;
+		color: white;
+		height: 70px;
+		border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+	}
+
+	.describe_title {
+		font-size: 20px;
+		margin-bottom: 5px;
+	}
+
+
+	.video_button button {
+		width: 45%;
+		margin: 1%;
+		font-size: 20px;
+	}
+
+	html {
+		background-color: rgb(0, 13, 41);
+	}
+
+	.explain .content {
+		background-color: rgb(0, 13, 41);
+		color: white;
+	}
+
+	#top {
+		/*position: absolute;*/
+		/*top: 0;*/
+		width: 100%;
+		height: 100px;
+		background: white;
+	}
+
+
+	.mid {
+		/* padding: 20px 40px 0 40px; */
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		padding-top: 1%;
+	}
+
+	.pcRight {
+		height: 100%;
+	}
+
+	.pwdTest {
+		margin-top: -120px;
+		margin-left: -290px;
+	}
+
+	.inputWrap input {
+		width: 500px;
+		height: 65px;
+		font-size: 25px;
+		line-height: 30px;
+	}
+
+	.buttonWrap button {
+		width: 400px;
+		height: 50px;
+		top: 50px;
+		font-size: 18px;
+		position: relative;
+	}
+
+	.pwdTest div {
+		margin-bottom: 15px;
+	}
+
+	/* .videoWrap {
+		padding: 10px;
+	} */
+
+	.videoName {
+		font-size: 25px;
+	}
+
+	.content_title {
+		font-size: 16px;
+	}
+
+	.tech_company {
+		position: relative;
+		text-align: center;
+		color: white;
+		top: 5%;
+	}
+
+	.tech_company div {
+		font-weight: bold;
+		font-size: 15px;
+		margin-top: 5px;
+	}
+
+	.tech_company span {
+		font-size: 13px;
+		position: relative;
+		top: 10px;
+	}
+
+	.video_button {
+		position: relative;
+		top: 20%;
+	}
+}
+
+
+
+.ctsi_logo {
+	top: 25px;
+	left: 50px;
+	position: absolute;
+}
+
+
+.videoName {
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+#myVideo {
+	width: 100%;
+}
+
+
+
+.zns_image {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	position: relative;
+	left: 50%;
+	margin-left: -50%;
+	z-index: 1;
+}
+
+.zns_image img {
+	border-radius: 50%;
+}
+
+.explain .content {
+	width: 100%;
+	border-radius: 20px;
+	position: relative;
+	padding: 0px 20px;
+	top: 30px;
+	left: 50%;
+	margin-left: -50%;
+	text-align: center;
+}
+
+.explain .content::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.cover {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 10;
+}
+
+.pwdTest {
+	text-align: center;
+	/* width: 200px;
+	height: 150px; */
+	position: fixed;
+	left: 50%;
+	top: 50%;
+}
+
+
+
+.inputWrap input {
+	text-align: center;
+	border-radius: 5px;
+	border: 1px solid rgba(49, 57, 219, 0.2);
+	padding-left: 5px;
+}
+
+.buttonWrap button {
+	cursor: pointer;
+
+	line-height: 27px;
+	border-radius: 5px;
+	background-color: rgba(49, 57, 219, 1);
+	color: #Fff;
+	border: 1px solid rgba(49, 57, 219, 0.2);
+	padding-left: 5px;
+}

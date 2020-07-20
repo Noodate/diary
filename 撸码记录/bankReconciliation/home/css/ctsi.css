@@ -1,0 +1,9 @@
+.search_item{
+	display: flex;
+}
+
+.search_item div{
+	margin: 5px;
+	line-height: 30px;
+	margin-bottom: 20px;
+}

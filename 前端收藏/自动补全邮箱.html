@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自动补全邮箱-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+* {
+	padding:0;
+	margin:0;
+}
+ul {
+	background:#ccc;
+}
+li {
+	list-style:none;
+}
+li:hover {
+	background:#fff;
+}
+.hide {
+	display:none;
+}
+</style>
+</head>
+<body>
+<div class="fat">
+    <input type="text" class="inp" onkeyup="complete(this)">
+    <div class="mail_box">
+        <ul class="hide">
+        </ul>
+    </div>
+</div>
+
+<script>
+var d = document;
+var ul = d.querySelector('.mail_box>ul');
+
+function complete(btn) {
+    var val = btn.value;
+    var mail = ["qq.com", "sina.com", "163.com",
+        "gmail.com", "sohu.com"
+    ];
+    var idx = val.indexOf('@');
+    if (idx != -1) {
+        for (var i = 0, str = ''; i < mail.length; i++)
+            str += '<li>' + val.slice(0, idx + 1) + mail[i] + '</li>';
+        ul.className = ul.className.replace(/(hide)/, '');
+        ul.innerHTML = str;
+    }
+}
+ul.addEventListener('click', function(e) {
+    var src = e.target || e.srcElement;
+    if (src.nodeName.toLowerCase() == 'li') {
+        d.getElementsByClassName('inp')[0].value = src.innerHTML;
+        ul.className += 'hide';
+    }
+})
+</script>
+
+</body>
+</html>

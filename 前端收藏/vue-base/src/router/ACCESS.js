@@ -1,0 +1,54 @@
+const access = {
+  OWNSPACE: 0, // 个人中心
+  APPROVE: 17
+}
+
+access.monitor = {
+  BACKCONFIRMATIONSEARCH: 31, // 函证催收次数与回函率
+  REPORTDAYWORKSEARCH: 32, // 报告日工作量报表
+  DOCDAYWORKSEARCH: 33, // 报告日工作量报表
+  TEAMSEARCH: 34,
+  MAILINGMESSAGESEARCH: 36 // 发函信息查询
+}
+
+access.auth = {
+  RESOURCEMANAGEMENT: 29, // 资源管理
+  AUTHGROUP: 3, // 权限定义
+  POSITION: 4, // 岗位设置
+  POSITIONAPPLY: 5 // 岗位分配
+}
+
+access.confirmation = {
+  WDPLANMANAGER: 6,
+  WDPLANSEARCH: 7,
+  DOCBUDGETADJUST: 27,
+  CPROJECTGROUPWORKMANAGE: 18, // 项目组工作管理
+  TEMPLATEMANAGE: 22,
+  CENTERWORKMANAGE: 19,
+  CREATECONFIRMATION: 20,
+  CHECKCONFIRMATION: 21,
+  PLANTRACE: 25,
+  MAILROOMWORKMANAGE: 23,
+  TOLIVINGROOMMANAGE: 24,
+  ARCHIVE: 30
+}
+access.report = {
+  WORKDEMANDSPLAN: 8, // 工作需求计划
+  CHECKDEMANDSPLAN: 9, // 审核需求计划
+  REPORTBUDGETADJUST: 28, // 报告预算变更调整
+  PROJECTGROUPWORKMANAGE: 10, // 项目组工作管理
+  TEMPLETSETTING: 11, // 模板设置
+  REPRTTEMPLATES: 12, // 报告模板
+  REPORTCENTERMANAGER: 13, // 报告中心管理,
+  REPORTWORKOUT: 14, // 编制修改报告
+  REPORTCHECKUP: 15, // 核对修改报告
+  REPORTCOMPOSING: 16 // 排版报告
+}
+access.standardLaborTime = {
+  STANDARDLABORTIME: 26
+}
+access.baseData = {
+  GROUPSETTING: 1,
+  TEAMLOAN: 35
+}
+export default access

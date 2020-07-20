@@ -1,0 +1,40 @@
+@charset "utf-8";
+.dv_img {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+#tishi {
+	font-size: 36px;
+	color: #F03;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-bottom-style: outset;
+	border-left-style: outset;
+	border-top-color: #F63;
+	border-right-color: #F63;
+	border-bottom-color: #F63;
+	border-left-color: #F63;
+	clear: both;
+	float: none;
+	text-align:center;
+}
+.dv_img img{
+	width:100px;
+	height:100px;
+	
+	}
+	#im1{
+		margin-left:200px;
+		}
+	body {
+	background-image: url(../images/福音战士.jpg);
+}
+#btn{
+	clear:both;
+	margin-top:300px;
+	text-align:right;
+	}#time {
+	font-size: 24px;
+	color: #F00;
+}

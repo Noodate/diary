@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>George Washington</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<link rel="stylesheet" href="css/samples-styles.css">
+	<link href="css/hsCheckData.css" rel="stylesheet" />
+	<link href="css/ctsi.css" rel="stylesheet" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/cityData.js"></script>
+	<script src="js/hsCheckData.js"></script>
+	<style type="text/css">
+		td.alt { background-color: #ffc; background-color: rgba(230, 127, 34, 0.2); }
+	</style>
+</head>
+<body>
+<script type="text/javascript">
+    var ctsi; //全局变量
+	var email;
+</script>
+<div class="htmleaf-container">
+	<div class="htmleaf-content">
+		<!--<table class="addTable" style="display: none">-->
+			<!--<thead>-->
+			<!--<tr>-->
+				<!--<th scope="col">用户名</th>-->
+				<!--<th scope="col">email</th>-->
+			<!--</tr>-->
+			<!--</thead>-->
+			<!--<tbody>-->
+			<!--<tr>-->
+				<!--<td><input class="addInput" id="userName"></input></td>-->
+				<!--<td><input class="" id="userEmail"></input></td>-->
+			<!--</tr>-->
+			<!--</tbody>-->
+		<!--</table>-->
+			<span>用户名</span>
+			<span style="position: absolute;left: 470px">email</span> <br>
+			<input class="addInput" id="userName"></input>
+			<input style="position: absolute;left: 470px" class="" id="userEmail"></input> <br>
+
+		<table class="userPower">
+			<thead>
+			<tr>
+				<th scope="col">分行区域</th>
+				<th scope="col">角色等级</th>
+				<th scope="col">操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr><td><select class="selectArea" ></select></td><td><select class="selectRole" ></select></td><td><button onclick="{if(confirm('确定要删除吗?')) {deleteUser(this); }else {}}">删除</button></td></tr>
+			</tbody>
+		</table>
+		<button onclick="addPower()" >添加权限</button>
+		<button onclick="trueEdit()" >确认</button>
+	</div>
+
+</div>
+
+<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="js/jquery.filtertable.min.js"></script>
+</body>
+</html>
+<script>
+	$(function () {
+	    initWin();
+    })
+    $('.cityDanXuan').hsCheckData({
+        isShowCheckBox: false, //默认为false
+        data: cityData
+    });
+    $('.cityMR').hsCheckData({
+        isShowCheckBox: true,
+        data: cityData
+    });
+    function initWin() {
+        //获取url里面的id参数
+        var url = window.location.href;
+        var id=url.substring(url.indexOf('=')+1,url.length);
+        ctsi=id;
+        if(id!=0){
+            $('.addInput').attr("readOnly",true);
+            idea="edit";
+        }else {
+            idea="add";
+        };
+        $.ajax({
+            url: "/user/getSelect",
+            contentType: "application/json;charset=UTF-8",
+            data:ctsi,
+            dataType:"json",
+            type: "POST",
+            success: function(data){
+                var list=data.data;
+                console.log(data);
+                for(var i=0;i<list[2].length;i++){
+                    $('.selectRole').append("<option value='"+list[2][i].role_number+"'>"+list[2][i].role_name+"</option>");
+				}
+                for(var i=0;i<list[1].length;i++){
+                    $('.selectArea').append("<option value='"+list[1][i].id+"'>"+list[1][i].area+"</option>");
+                }
+                if(idea=="edit"){
+					$('#userName').val(list[0].user_name);
+                    $('#userEmail').val(list[0].email);
+                    email=list[0].email;
+				}
+                // var list = data.data;
+                // if(list.length>0){
+                //     for(var i=0;i<list.length;i++){
+                //     }
+                // }
+            },
+            error : function(e) {
+                alert("error !");
+                alert(e);
+            }
+        })
+    }
+    function trueEdit() {
+        var list= new Array();
+        var obj=new Object();
+        var url;
+        $("select").each(function () {
+            if($(this).hasClass("selectRole")||$(this).hasClass("selectRole2")){
+                obj.role_number=$(this).val();
+        	}
+            if($(this).hasClass("selectArea")||$(this).hasClass("selectArea2")){
+                obj.id=$(this).val();
+            }
+            if(obj.role_number!=null&&obj.id!=null){
+                list.push(obj);
+                obj=new Object();
+			}
+        })
+        console.log(list);
+        var params = {"id":ctsi,"user_name":$('#userName').val(),"email":email,"rolepermissions":list};
+        if(idea=="edit"){
+            url="/user/setUser";
+		}
+		if(idea=="add"){
+            url="/user/addUser";
+		}
+        $.ajax({
+            url: url,
+            contentType: "application/json;charset=UTF-8",
+            data:JSON.stringify(params),
+            dataType:"json",
+            type: "POST",
+            success: function(data){
+                alert("操作成功!");
+                location.reload();
+            },
+            error : function(e) {
+                alert("error !");
+            }
+        })
+    }
+    function addPower() {
+        $('.userPower  tbody').append( " <tr><td><select class='selectArea2' ></select></td><td><select class='selectRole2' ></select></td><td><button onclick=\"{if(confirm('确定要删除吗?')) {deleteUser(this); }else {}}\">删除</button></td></tr>");
+       	$.each($(".selectArea2"),function () {
+			if($(this).empty()){
+                $(this).append( $(".selectArea").find("*").clone(true));
+			}
+        })
+        $.each($(".selectRole2"),function () {
+            if($(this).empty()){
+                $(this).append( $(".selectRole").find("*").clone(true));
+            }
+        })
+    }
+    function deleteUser(obj) {
+        var tr=obj.parentNode.parentNode;
+        var tbody=tr.parentNode;
+        tbody.removeChild(tr);
+        // //只剩行首时删除表格
+        // if(tbody.rows.length==1) {
+        //     tbody.parentNode.removeChild(tbody);
+        // }
+    }
+</script>

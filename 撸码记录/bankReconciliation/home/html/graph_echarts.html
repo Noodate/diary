@@ -1,0 +1,111 @@
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+
+	</head>
+
+	<body class="gray-bg">
+		<div class="ibox float-e-margins" style="height: 90%;">
+			<div class="ibox-title">
+				<h5>饼状图</h5>
+			</div>
+			<div class="ibox-content" style="height: 90%;">
+				<div class="echarts" id="echarts-pie-chart" style="height: 90%;"></div>
+			</div>
+		</div>
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js?v=2.1.4"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+		<!-- ECharts -->
+		<script src="../js/plugins/echarts/echarts-all.js"></script>
+
+		<!-- 自定义js -->
+		<script src="../js/content.js?v=1.0.0"></script>
+
+
+		<script type="text/javascript">
+			$(function() {
+				queryGraph();
+			})
+
+			function queryGraph() {
+				var ip = 'http://192.168.101.107:8080';
+				ip='';
+				$.ajax({
+					type: "POST",
+					url: ip + "/icbc/getCompare",
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+					dataType: "json",
+					success: function(data) {
+						console.log(data);
+						pieChart(data);
+					},
+					error: function(e) {
+						console.log(e);
+					}
+				});
+			}
+
+			function pieChart(xx) {
+				console.log(xx);
+				var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
+				var pieoption = {
+					title: {
+						text: '工行对账数据对比',
+						// subtext: '纯属虚构',
+						x: 'center'
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)"
+					},
+					legend: {
+						orient: 'vertical',
+						x: 'left',
+						data: ['厂商数据', '工行数据', '日志分析']
+					},
+					calculable: true,
+					series: [{
+						name: '具体数量',
+						type: 'pie',
+						radius: '55%',
+						center: ['50%', '60%'],
+						data: [
+							{
+								value: xx.futureNumber,
+								name: '厂商数据'
+							},
+							{
+								value: xx.icbcNumber,
+								name: '工行数据'
+							},
+							{
+								value: xx.logNumber,
+								name: '日志分析'
+							}
+						]
+					}]
+				};
+				pieChart.setOption(pieoption);
+				$(window).resize(pieChart.resize);
+			}
+		</script>
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,92 @@
+.login {
+  background-image: linear-gradient(135deg,#79f1a4,#0e5cad);
+  width: 100%;
+  //background: url(../assets/login/logBg.png) center no-repeat fixed;
+  //background-size: cover;
+  position: relative;
+  .intro {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 4px;
+  }
+  .companyMsg {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display:flex;
+    align-items:center;
+    .logo{
+      img {
+        width: 250px;
+        height: auto;
+        margin-right:10px;
+      }
+    }
+  }
+  &-form {
+    //width: 385px;
+    height: 360px;
+    padding: 20px 30px;
+    position: absolute;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -192px;
+    color: #666;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 1px 1px 4px #767676;
+    &-input {
+      margin: 30px 0;
+      position: relative;
+      left: 0;
+      top: 0;
+      .forgetPassword {
+        height: 20px;
+        line-height: 20px;
+        span {
+          cursor: pointer;
+          color: $default-font-color;
+        }
+
+      }
+      .ivu-form-item-content {
+        line-height: 0;
+      }
+      .ivu-poptip {
+        width: 100%;
+        .ivu-poptip-rel {
+          display: block;
+        }
+      }
+      .loginError {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        line-height: 1;
+        padding-top: 10px;
+        color: $error;
+      }
+    }
+    .intro{
+      color: #666;
+      font-weight: 500;
+    }
+  }
+  &-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    width: 40%;
+    margin-left: -20%;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    z-index: 999;
+  }
+}
+

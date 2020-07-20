@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<title> - FooTable</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="../css/plugins/footable/footable.core.css" rel="stylesheet">
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/ctsi.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+		<link href="../css/font-awesome.css" rel="stylesheet">
+		<link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
+		<link href="../css/date/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<link href="../css/date/yk-datepicker.css" rel="stylesheet">
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content animated fadeInRight">
+
+			<div class="container">
+				<div class="search_item">
+					<div>
+						开始时间
+					</div>
+					<div class="input-group date">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input type="text" class="form-control beginTime" id="datetimeStart" value="">
+					</div>
+					<div>
+						结束时间
+					</div>
+					<div class="input-group date">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input type="text" class="form-control endTime" id="datetimeEnd" value="">
+					</div>
+					<div>
+						手机号
+					</div>
+					<div>
+						<input type="text" class="form-control phone">
+					</div>
+					<div class="text-center">
+						<a data-toggle="modal" class="btn btn-primary" onclick="queryResult()">查 询</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>历史记录</h5>
+
+							<div class="ibox-tools">
+								<a class="close-link" id="generate-excel">
+									<i class="fa fa-table"></i>
+								</a>
+							</div>
+						</div>
+
+						<!-- <div class="col-md-3" style="padding:2em 0;">
+				    <button type="button" class="btn btn-success btn-block" id="generate-excel"><i class="fa fa-file-excel-o"
+				         aria-hidden="true"></i> 将表格转换为Excel</button>
+				</div> -->
+						<div class="ibox-content">
+							<table id="test_table" class="footable table table-stripped toggle-arrow-tiny" data-page-size="10">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>订单编号</th>
+										<th>渠道商id</th>
+										<th>电话号码</th>
+										<th>话费面值</th>
+										<th>充值时间</th>
+									<!-- 	<th class="col-lg-1">安全验证密钥</th>
+										<th class="col-lg-1">安全验证签名</th>
+										<th class="col-lg-1">请求接口</th>
+										<th class="col-lg-6">回调地址</th> -->
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="13">
+											<ul class="pagination pull-right"></ul>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+
+		<script type="text/javascript" src="../js/jszip.min.js"></script>
+		<script type="text/javascript" src="../js/FileSaver.js"></script>
+		<script type="text/javascript" src="../js/excel-gen.js"></script>
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+		<script src="../js/plugins/footable/footable.all.min.js"></script>
+		<!-- 自定义js -->
+		<script src="../js/content.js?v=1.0.0"></script>
+		<script src="../js/plugins/toastr/toastr.min.js"></script>
+		<script src="../js/date/bootstrap-datetimepicker.js"></script>
+		<script src="../js/date/yk-datepicker.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('.footable').footable();
+				$('.footable2').footable();
+			});
+		</script>
+		<script>
+			$(function() {
+				queryResult();
+			})
+
+			function queryResult() {
+				var ip = 'http://192.168.101.107:8080';
+				ip='';
+				var xx;
+				console.log($('.beginTime').val(), $('.endTime').val(), $('.phone').val());
+				$.ajax({
+					type: "POST",
+					url: ip + "/icbc/getLog",
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+					dataType: "json",
+					data: {
+						"start": $('.beginTime').val(),
+						"end": $('.endTime').val(),
+						"order_tel": $('.phone').val()
+					},
+					success: function(data) {
+						xx = data;
+						console.log(xx)
+						var run = new Build();
+						run.init();
+					},
+					error: function(e) {
+						console.log(e);
+					}
+				});
+
+				function Build() {};
+				Build.prototype.render = function() {
+						$("#test_table tbody").html("");
+						for (let i = 0; i < xx.length; i++) {
+							let html = "<tr><td>" + xx[i].log_id +
+								"</td><td>" + xx[i].order_agent_bill +
+								"</td><td>" + xx[i].order_agent_id +
+								"</td><td>" + xx[i].order_tel +
+								"</td><td>" + xx[i].fee_face_price +
+								"</td><td>" + xx[i].timestamp_s +
+								// "</td><td>" + xx[i].app_key +
+								// "</td><td>" + xx[i].app_sign +
+								// "</td><td>" + xx[i].action_a +
+								// "</td><td>" + xx[i].order_agent_back_url +
+								"</td></tr>";
+							$("#test_table tbody").append(html);
+						}
+						setTimeout(function() {
+							$('#test_table').trigger('footable_redraw');
+						}, 1);
+					},
+					Build.prototype.init = function() {
+						this.render();
+					}
+				$("#generate-excel").click(function() {
+					var excel = new ExcelGen({
+						"src_id": "test_table",
+						"show_header": true
+					});
+					excel.generate();
+				});
+			};
+
+
+			$('#datetimeStart').datetimepicker({
+				format: 'yyyy-mm-dd',
+				minView: 'month',
+				language: 'zh-CN',
+				autoclose: true,
+			})
+
+			$("#datetimeEnd").datetimepicker({
+				format: 'yyyy-mm-dd',
+				minView: 'month',
+				language: 'zh-CN',
+				autoclose: true,
+			})
+		</script>
+	</body>
+
+</html>

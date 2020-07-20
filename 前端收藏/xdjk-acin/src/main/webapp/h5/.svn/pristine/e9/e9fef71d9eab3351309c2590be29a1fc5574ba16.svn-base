@@ -1,0 +1,28 @@
+
+
+#box1 {
+	width: 740px;
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+#box2 {
+	width: 360px;
+	overflow: hidden;
+	float: left;
+}
+
+#box3 {
+	width: 360px;
+	overflow: hidden;
+	margin: 0 0 0 380px;
+}
+
+#banner_login {
+  position: relative;
+  padding: 24px;
+  height: 172px;
+  width: 932px;
+  margin: 200px 0 100px 205px;
+  background: #fff;
+}

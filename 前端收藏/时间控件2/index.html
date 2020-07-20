@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <title>基于bootstrap按年、季度、年月、年月日的日历插件</title>
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link href="./bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="./bootstrap/css/yk-datepicker.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+<div class="container">
+    <form action="" class="form-horizontal"  role="form">
+        <fieldset>
+            <legend>Test</legend>
+            <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+			<div class="form-group">
+                <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+			<div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+			<div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">年</label>
+                <div class="input-group date col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <input class="form-control form_Y" size="16" type="text" value="" readonly>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+			<div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">季度</label>
+                <div class="input-group date col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <input class="form-control form_QT" size="16" type="text" value="" readonly>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+			<div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">年月</label>
+                <div class="input-group date col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <input class="form-control form_YM" size="16" type="text" value="" readonly>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+			<div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">年月日</label>
+                <div class="input-group date col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <input class="form-control form_YMD" size="16" type="text" value="" readonly>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="https://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script type="text/javascript" src="./bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./bootstrap/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./bootstrap/js/yk-datepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+	$('.form_Y').getY().on('changeDate', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+	});
+	$('.form_QT').getQT().on('changeDate', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+	});
+	$('.form_YM').getYM().on('changeDate', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+	});
+	$('.form_YMD').getYMD().on('changeDate', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+	});
+</script>
+
+</body>
+</html>

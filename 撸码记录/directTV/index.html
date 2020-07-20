@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<!-- <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;user-scalable=no" name="viewport" /> -->
+		<meta content="user-scalable=no" name="viewport" />
+		<title>天翼云会议</title>
+		<link rel="icon" type="image/x-icon" href="image/ctsi.png" />
+		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+		<link href="css/video-js.css" rel="stylesheet">
+		<link href="css/ctsi.css" rel="stylesheet">
+		<script src='js/video.js'></script>
+		<script src="js/videojs-contrib-hls.min.js" type="text/javascript"></script>
+		<script src="js/jquery.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		<!-- videojs-contrib-hls 用于在电脑端播放 如果只需手机播放可以不引入 -->
+	</head>
+	<body>
+		<style>
+			.video-js .vjs-tech {
+				position: relative !important;
+			}
+		</style>
+
+		<div class="bg">
+			<!-- 遮罩 -->
+			<div class="cover">
+				<div class="pwdTest">
+					<div>
+						<span class="pwdSpan" style="color: white;">欢迎观看疫情防控知识讲座</span>
+					</div>
+					<div class="inputWrap">
+						<input type="password" name="" id="pwd" value="" placeholder="请输入观看码"/>
+					</div>
+					<div class="buttonWrap">
+						<button  type="button" onclick="testPwd()">进入观看</button>
+					</div>
+				</div>
+			</div>
+			<div class="">
+				<div id="top">
+					<img src="image/dianxin.png" class="ctsi_logo">
+				</div>
+			</div>
+			<!-- <div class="banner">
+			</div> -->
+			<div class="mid">
+
+				<div class="col-lg-8">
+					<div class="videoWrap">
+						<!-- <div class="videoName">
+							<span>钟南山院士视频讲座</span>
+						</div> -->
+						<div>
+							<video id="myVideo" poster="./image/video.png" class="video-js vjs-default-skin vjs-big-play-centered" controls  preload="auto" data-setup='{}'
+							 style='height: auto'>
+								<!-- 下面这个src就是播放路径 -->
+								<source id="source" src="" type="application/x-mpegURL">
+								</source>
+							</video>
+						</div>
+						<div class="video_button ibox-content MobleVideo">
+							<button class="video_button_1 btn   dim btn-large-dim btn-outline" type="button" onclick="changeVideo(1,'moble')">
+								线路一
+							</button>
+							<button class="video_button_2 btn   dim btn-large-dim btn-outline" type="button" onclick="changeVideo(2,'moble')">
+								线路二
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 pcRight">
+					<div class="explain">
+						<div class="describe">
+							<div class="describe_title">
+								中央企业境外疫情防控专题讲座
+							</div>
+							<div class="describe_time">
+								直播时间: 2020.05.07  15:00
+							</div>
+						</div>
+						<div class="zns_image">
+							<img src="image/zns.jpg">
+						</div>
+						<div class="content">
+							<div class="content_title" style="font-weight:bold;margin-bottom:10px;">钟南山</div>
+							<div class="content_title" style="font-weight:bold;margin-bottom:10px;">中国工程院院士、著名呼吸病学专家</div>
+							<div class="content_main" style="text-align:justify;">
+								寄语：谁都有个家，钟院士心中有个“大家”。钟南山在抗非斗争中面对种种困难和压力，他是智慧而刚毅的；面对同事和病人，他却是博爱和仁厚的。
+							</div>
+						</div>
+
+					</div>
+					<div class="tech_company">
+						<div>
+							主办：国务院国资委境外防控指导组
+						</div>
+						<div>
+							承办：中国南方航空集团有限公司
+						</div>
+						<div>
+							协办：中国电信集团有限公司
+						</div>
+						<span>
+							中国电信天翼云会议提供技术支撑
+						</span>
+					</div>
+					<div class="video_button ibox-content PCVideo">
+						<button class="video_button_1 btn   dim btn-large-dim btn-outline" type="button" onclick="changeVideo(1,'pc')">
+							线路一
+						</button>
+						<button class="video_button_2 btn   dim btn-large-dim btn-outline" type="button" onclick="changeVideo(2,'pc')">
+							线路二
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- <div class="qiehuan" style="width:100px;height: 100px;background: red;margin:0 auto;line-height: 100px;color:#fff;text-align: center">切换视频</div> -->
+	</body>
+	<script type="text/javascript">
+		// 加密函数
+		function compile(code) {
+			var c = String.fromCharCode(code.charCodeAt(0) + code.length);
+			for (var i = 1; i < code.length; i++) {
+				c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1));
+			}
+			return escape(c);
+		}
+		// 解密函数
+
+
+		//密码验证
+		function testPwd() {
+			let pwd = $('#pwd').val();
+			// console.log(compile(pwd));
+			if (compile(pwd) === 'O%AB%D1%D7%CF%B5%B9%D1%D1%C8%D2%DC') {
+				$('.cover').css("display", "none");
+				changeVideo(1);
+				changeVideo(1);
+			} else {
+				alert('对不起，密码错误');
+			}
+		}
+
+		document.onkeydown = function(e) { // 回车提交表单
+			// 兼容FF和IE和Opera
+			var theEvent = window.event || e;
+			var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+			if (code == 13) {
+				testPwd();
+			}
+		}
+	</script>
+	<script>
+		var videoSrc1='http://hk.mdx.cachenow.net/live/zns-overseas-2/playlist.m3u8';
+		videoSrc1='http://origin-hls.ctg.cachenow.net/live/stream/1589847643_55701246138/index.m3u8';
+		var videoSrc2='http://ctgpull-hls.cachenow.net/live/zns-yunhuiyi/playlist.m3u8';
+		// videojs 简单使用
+		var myVideo = videojs('myVideo', {
+			bigPlayButton: true,
+			textTrackDisplay: false,
+			posterImage: false,
+			errorDisplay: false,
+		})
+		//直播播放
+		// myVideo.play()
+		//切换视频
+		function changeVideo(data,type) {
+			var buttonColor="rgb(47, 128, 228)";
+			var vdoSrc;
+			//路线一
+			if(data===1){
+				console.log(1)
+				vdoSrc=videoSrc1;
+				//换色
+				if(type=='pc'){
+				$('.video_button_2 ').css("background", buttonColor); 
+				$('.video_button_2 ').css("color", "white");
+				}
+				if(type=='moble'){
+					$('.video_button_2 ').css("color", "black"); 
+				}
+				$('.video_button_1 ').css("color", buttonColor); 
+				$('.video_button_1 ').css("background", "white"); 
+			}
+			//路线二
+			if(data===2){
+				console.log(2)
+				vdoSrc=videoSrc2;
+				if(type=='pc'){
+				$('.video_button_1 ').css("background", buttonColor);
+				$('.video_button_1 ').css("color", "white"); 
+				}
+				if(type=='moble'){
+					$('.video_button_1 ').css("color", "black");
+				}
+				$('.video_button_2 ').css("background", "white"); 
+				$('.video_button_2 ').css("color", buttonColor);
+			}
+			if (/\.m3u8$/.test(vdoSrc)) { //判断视频源是否是m3u8的格式
+				myVideo.src({
+					src: vdoSrc,
+					type: 'application/x-mpegURL' //在重新添加视频源的时候需要给新的type的值
+				})
+			} else {
+				myVideo.src(vdoSrc)
+			}
+			myVideo.load();
+			myVideo.play();
+			console.log(3)
+		}
+		//默认启动线路一
+		// $(function(){
+		// 	changeVideo(1);
+		// })
+	</script>

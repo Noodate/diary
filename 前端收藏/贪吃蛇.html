@@ -1,0 +1,140 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>canvas贪吃蛇-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<button onclick="playGame(1)">开始游戏</button>
+<button onclick="playGame(0)">暂停游戏</button>
+
+<script>
+var canvas = document.getElementById("canvas");
+canvas.width = 400;
+canvas.height = 400;
+canvas.style.border = "1px solid #ccc";
+
+var ctx = canvas.getContext('2d');
+// 记录蛇运行路径
+var map = [];
+// 每个矩形的宽高
+var width = height = 8;
+// 矩形的坐标
+var x = y = 8;
+var size = 8;
+// 蛇身的长度
+var len = 10;
+// 默认方向向右
+var code = 2;
+// 食物坐标
+var randX = randY = 0;
+// 计时器
+var timer;
+// 开关
+var play = true;
+
+function setGame() {
+    // 键盘方向 1向上  2向右  3向下  0向下
+    switch (code) {
+        case 1:
+            y -= size;
+            break;
+        case 2:
+            x += size;
+            break;
+        case 3:
+            y += size;
+            break;
+        case 0:
+            x -= size;
+            break;
+    }
+
+    // 蛇身碰撞限制
+    for (var i = 0; i < map.length; i++) {
+        if (parseInt(map[i].x) == x && parseInt(map[i].y) == y) {
+            alert('你输了！');
+            window.location.reload();
+        }
+        // 判断食物是否在自己身上
+        if (parseInt(map[i].x) == randX && parseInt(map[i].y) == randY) {
+            rand_frog();
+        }
+    }
+
+    // 出墙限制
+    if (x > canvas.width || x < 0 || y > canvas.height || y < 0) {
+        alert('你输了！');
+        window.location.reload();
+    }
+
+    // 控制蛇身长度
+    if (map.length > len) {
+        // 删除数组里面第一项并返回值
+        var cl = map.shift();
+        ctx.clearRect(cl['x'] - 1, cl['y'] - 1, size + 2, size + 2);
+
+    }
+
+    // 记录蛇身每个矩形X,Y轴的位置
+    map.push({
+        'x': x,
+        'y': y
+    });
+
+    // 画矩形
+    ctx.fillStyle = '#069';
+    ctx.strokeStyle = '#069';
+    ctx.fillRect(x, y, width, height);
+
+    // 吃食物判断
+    if (randX == x && randY == y) {
+        len++;
+        randFrog();
+    }
+}
+document.onkeydown = function(event) {
+    // 兼容
+    var event = window.event || event;
+    // 获取键盘码
+    var keycode = event.keyCode - 37;
+    // 键盘方向 1向上  2向右  3向下  0向左
+    if (code == 1 && keycode != 3) {
+        code = keycode;
+    } else if (code == 2 && keycode != 0) {
+        code = keycode;
+    } else if (code == 3 && keycode != 1) {
+        code = keycode;
+    } else if (code == 0 && keycode != 2) {
+        code = keycode;
+    }
+}
+// 投放食物
+function randFrog() {
+    // 随机坐标
+    randX = Math.ceil(Math.random() * 49) * 8;
+    randY = Math.ceil(Math.random() * 49) * 8;
+    ctx.fillStyle = '#000';
+    ctx.strokeStyle = '#000';
+    ctx.fillRect(randX, randY, size, size);
+}
+// 游戏开始与暂停的控制
+function playGame(i) {
+    if (i && play) {
+        timer = setInterval(setGame, 100);
+        play = false;
+        randFrog();
+    } else {
+        play = true;
+        clearInterval(timer);
+        ctx.clearRect(randX, randY, size, size);
+    }
+}
+</script>
+
+</body>
+</html>

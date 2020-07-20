@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数字华容道</title>
+		<!-- 声明css代码域 -->
+		<style type="text/css">
+			body {
+    background-color: #22252a;				
+			}
+
+			#optiDiv {
+				display: none;
+				text-align: center;
+			}
+
+			#startDiv {
+				width: 400px;
+				height: 500px;
+				border-radius: 20px;
+				margin: auto;
+				margin-top: 100px;
+				text-align: center;
+			}
+
+			#gameDiv {
+				height: 700px;
+				width: 560px;
+				display: none;
+				margin: auto;
+				float: left;
+				margin-left: 661px;
+			}
+
+			.stage {
+				height: 80px;
+				width: 200px;
+				background-image: url(img/stageImg.jpg);
+				margin-top: 50px;
+				border-radius: 5px;
+				font-size: 20px;
+				color: #000;
+			}
+
+			.opti {
+				height: 50px;
+				background-color: aquamarine;
+			}
+
+			.step {
+				display: none;
+				color: #0000FF;
+			}
+		</style>
+		
+		<!-- 声明引入的jquery文件 -->
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<!-- 声明js代码域 -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var gameDiv = $("#gameDiv");
+				var step = 0;
+				//主界面难度选择按鈕的单击事件
+				$(".stage").click(function() {
+					//难度标识变量option,3为3×3,4为4×4,以此类推
+					var option = $(this).attr("id");
+					//gameDiv区域显示
+					gameDiv.css("display", "block");
+					//startDiv区域隐藏
+					$("#startDiv").css("display", "none");
+					//optiDiv区域显示
+					$("#optiDiv").css("display", "block");
+					var numbers = GenerateNumber(option);
+					while (canUse(numbers) == false) {
+						numbers = GenerateNumber(option);
+					}
+					//给最终生成的数组添加第(op*op)项,数据为空字符串,用来显示华容道中的空白处
+					numbers[(option * option) - 1] = "";
+					//调用函数,在页面显示华容道
+					GenerateTables(option, numbers);
+					//初始化显示步数的元素区域
+					GenerateStepData();
+					//给按钮重新开始添加单击事件
+					$("#resetGame").click(function() {
+						//gameDiv内容清空
+						gameDiv.empty();
+						//步数step清零
+						step = 0;
+						//初始化显示步数的元素区域
+						GenerateStepData();
+						//重新加载生成的表格
+						GenerateTables(option, numbers);
+					});
+					//给按钮返回主界面添加click事件
+					$("#returnStage").click(function() {
+						//gameDiv内容清空
+						gameDiv.empty();
+						//gameDiv区域隐藏
+						gameDiv.css("display", "none");
+						//startDiv区域显示
+						$("#startDiv").css("display", "block");
+						//optiDiv区域隐藏
+						$("#optiDiv").css("display", "none");
+						//步数step清零
+						step = 0;
+						//class为step的的元素隐藏,即显示步数的元素区域隐藏
+						$(".step").css("display", "none");
+					});
+				});
+				//生成表格函数
+				function GenerateTables(op, numbers) {
+					//在gameDiv中添加表格
+					gameDiv.append("<table  align='center' id='gameTable'></table>");
+					var gameTable = $("#gameTable");
+					//设置表格样式
+					// gameTable.css({"height":"395px","width":"325px"});
+					// gameTable.css({"height":"515px","width":"425px"});
+					//循环添加行
+					for (var i = 0; i < op; i++) {
+						gameTable.append("<tr></tr>");
+						//设置行的样式
+						$("tr").css({
+							"textAlign": "center",
+							"fontSize": "20px"
+						});
+						//循环添加列
+						for (var j = 0; j < op; j++) {
+							$("tr").eq(i).append("<td></td>");
+							//设置列的样式
+							$("td").css({
+								"height": "122px",
+								"width": "97.9px",
+								"cursor": "pointer"
+							});
+						}
+					}
+					//循环遍历所有单元格
+					for (var i = 0; i < $("tr td").length; i++) {
+						//为每一个单元格添加文本内容和给id属性赋值
+						$("tr>td").eq(i).html(numbers[i]);
+						$("tr td").eq(i).attr("id", i + 1);
+					}
+					//设置颜色
+					setColor($("tr td"));
+					//为单元格添加click事件,并得到step的值
+					$("td").click(function() {
+						step = tdNumberClick(op, $(this), step);
+					});
+				}
+				//初始化显示步数的元素样式和内容的函数
+				function GenerateStepData() {
+					$(".step").filter("b").css({
+						"color": "green",
+						"fontSize": "30px",
+						"display": "inline"
+					});
+					$(".step").filter("b").html("");
+					$(".step").filter("label").css("display", "inline");
+				}
+				//生成存储数字的数组函数
+				function GenerateNumber(op) {
+					//声明储存数字的数组
+					var numbers = [];
+					//声明用来标识已经生成的数字个数
+					var count = 0;
+					//生成数字,直到数字个数为总单元格数减1
+					while (count < (op * op) - 1) {
+						//生成相应范围内的数字
+						var rn = Math.floor(Math.random() * (op * op - 1) + 1);
+						//声明用来判断生成数字是否相同的变量,相同为false,不同为true
+						var jd = true;
+						//循环遍历数组
+						for (var i = 0; i < numbers.length; i++) {
+							//判断生成的数字是否已存在与数组中
+							if (rn == numbers[i]) {
+								//相同则更改变量jd的值为false,用以说明有相同的数字
+								jd = false;
+							}
+						}
+						//判断jd的值
+						if (jd) {
+							//当jd的值为true时,存入生成的随机数,变量count加1
+							numbers[count] = rn;
+							count++;
+						}
+					}
+					//返回数组
+					return numbers;
+				}
+				//判断生成的数组是否符合规则
+				function canUse(numbers) {
+					//声明标识逆序数的个数
+					var ivsNumber = 0;
+					//遍历数组
+					for (var i = 0; i < numbers.length; i++) {
+						for (var j = i + 1; j < numbers.length; j++) {
+							//依次两两对比,判断前一个是否比后一个大
+							if (numbers[i] > numbers[j]) {
+								//是,则ivsNumber加1
+								ivsNumber++;
+							}
+						}
+					}
+					//判断ivsNumber变量是否为偶数
+					if (ivsNumber % 2 == 0) {
+						//是函数返回true
+						return true;
+					} else {
+						//不是函数返回false
+						return false;
+					}
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<h3 align="center" style="color: #FFF;">数字华容道</h3>
+		<div id="optiDiv">
+			<input type="button" name="" id="returnStage" value="返回主界面" class="opti" /><input type="button" name="" id="resetGame"
+			 value="重新开始" class="opti" />
+		</div>
+		<div id="startDiv">
+			<b style="color: #FF0000;font-size: 20px;">选择难度</b><br>
+			<input type="button" name="" id="3" value="3×3" class="stage" /><br>
+			<input type="button" name="" id="4" value="4×4" class="stage" /><br>
+			<input type="button" name="" id="5" value="5×5" class="stage" /><br>
+		</div>
+		<div id="gameDiv"></div><label class="step">所走步数:</label><b class="step"></b><br><br><br><br><br><br>
+		<label style="display: none; font-size: 20px;color: #FF0000;">原图:</label>
+		<audio controls="controls" style="display: none;">
+			<source src="music/7571.mp3" type="audio/ogg">
+		</audio>
+	</body>
+</html>
+
+<script>
+			//声明全局步数变量step;
+		var step = null;
+		/* 
+		 1、此函数为单元格单击事件函数
+		 2、参数意义
+			op:选择的难度标识变量
+			cell:触发单击事件的单元格对象
+			s:已经移动单元格的次数变量
+		3、函数逻辑:通过判断cell对象上，下，左，右是否存在其他单元格对象，如果存在则调用函数setContentAndStep();不存在则不进行任何操作，判断结束后
+			则调用setColor()函数,再调用judgeNumSuccess()并判断返回值,返回值为true则弹出确认框告知通过成功，并再判断确认框的返回值，(true则回到主界面，
+			false则移除单元格的单击事件函数，)返回值为false则不执行任何操作
+		 */
+		function tdNumberClick(op, cell, s) {
+			//重新加载点击单元格的音效
+			$("audio")[0].load();
+			//播放音效
+			$("audio")[0].play();
+			//判断当前的单元格是否有后一个同级元素
+			if (cell.next()[0] != null) {
+				//是，声明后一个同级元素对象rightCell
+				var rightCell = cell.next();
+				//调用函数交换内容
+				setContentAndStep(cell, rightCell, s, op);
+
+			}
+			//同理判断是否有前一个同级元素(与后一个同级元素逻辑相同)
+			if (cell.prev()[0] != null) {
+				var leftCell = cell.prev();
+				setContentAndStep(cell, leftCell, s, op);
+
+			}
+			//判断当前单元格的id属性值减去列数是否大于零,来得出上面是否有单元格
+			if (cell.attr("id") - op > 0) {
+				//是,声明上面的单元格对象
+				var topCell = $("tr td").eq(cell.attr("id") - op - 1);
+				//调用函数交换内容
+				setContentAndStep(cell, topCell, s, op);
+
+			}
+			//判断当前单元格的id属性值加上列数是否小于等于总单元格数,来得出下面是否有单元格
+			if (Number(cell.attr("id")) + Number(op) <= Number(op * op)) {
+				var bottomCell = $("tr td").eq(Number(cell.attr("id")) + Number(op) - 1);
+				//调用函数交换内容
+				setContentAndStep(cell, bottomCell, s, op);
+
+			}
+			//设置颜色
+			setColor($("tr td"));
+			//调用函数判断是否通关
+			if (judgeNumSuccess($("tr td"))) {
+				if (confirm("恭喜你通关,所用步数为:" + step + ",是否回到主界面")) {
+					//点击是则触发返回主界面按钮单击事件
+					$("#returnStage").click();
+				} else {
+					//否，则移除单元格的点击事件函数
+					$("td").off();
+				}
+			}
+			//返回变量step的值
+			return step;
+		}
+		/* 
+		1、函数作用:控制游戏是否通关的函数----数字
+		2、参数意义
+			tds:所有的单元格对象集合
+		3、算法逻辑:算法逻辑为判断每个单元格的内容是否与id值相同，有一个不同则返回false即没有通关，反之返回true通关
+		*/
+		function judgeNumSuccess(tds) {
+			var isSuccess = true;
+			for (var i = 0; i < tds.length - 1; i++) {
+				if (tds.eq(i).attr("id") != tds.eq(i).html()) {
+					isSuccess = false;
+				}
+			}
+			return isSuccess;
+		}
+		/* 
+		 1、函数作用:控制单元格颜色的函数
+		 2、参数意义
+				tds:所有的单元格对象集合
+		 3、算法逻辑:筛选出单元格内容为空的对象，再筛选出单元格内容不为空的对象，分别设置不同颜色
+		 */
+		function setColor(tds) {
+			//筛选出单元格内容为空字符串的单元格元素对象
+			var nullTd = tds.filter(function() {
+				return $(this).html() == "";
+			});
+			//筛选出除nullTd之外的所有单元格对象数组
+			var notNullTd = tds.not(nullTd);
+			//设置notNullTd的样式
+			notNullTd.css({
+				"backgroundColor": "black",
+				"color": "red",
+				"borderColor": "black"
+			});
+			//设置nullTd的样式
+			nullTd.css({
+				"backgroundColor": "#FFFAE8",
+				"color": "red",
+				"borderColor": "black"
+			});
+		}
+		/* 
+		1、函数作用:控制数字移动和控制步数变化的函数
+		2、参数意义
+			cell0：触发单击事件的单元格对象
+			cell1：其他某个单元格对象
+			s:已经移动单元格的次数变量
+			option:选择的难度标识变量
+		3、算法逻辑:判断当前点击的单元格周围的单元格的内容是否有为空，有则与内容为空的单元格交换内容来达到移动的效果，没有则不执行任何操作
+		*/
+		function setContentAndStep(cell0, cell1, s, option) {
+			if (cell1.html() == "") {
+				step = s;
+				//步数变量step加1
+				step++;
+				//判断step变量是否达到某个值，并根据结果更改其样式
+				if (step == 14 * option) {
+					$(".step").filter("b").css({
+						"color": "yellow"
+					});
+				} else if (step == 20 * option) {
+					$(".step").filter("b").css({
+						"color": "red"
+					});
+				}
+				//显示当前step变量，即移动次数
+				$(".step").filter("b").html(step);
+				//
+				cell1.html(cell0.html());
+				cell0.html("");
+			}
+		}
+
+
+</script>

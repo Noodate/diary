@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+		<link href="../css/animate.css" rel="stylesheet">
+		<link href="../css/style.css?v=4.1.0" rel="stylesheet">
+
+	</head>
+
+	<body class="gray-bg">
+		<div class="ibox float-e-margins" style="height: 90%;">
+			<div class="ibox-title">
+				<h5>饼状图</h5>
+			</div>
+			<div class="ibox-content" style="height: 90%;">
+				<div class="echarts" id="echarts-pie-chart" style="height: 90%;"></div>
+			</div>
+		</div>
+		<!-- 全局js -->
+		<script src="../js/jquery.min.js?v=2.1.4"></script>
+		<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+		<!-- ECharts -->
+		<script src="../js/plugins/echarts/echarts-all.js"></script>
+
+		<!-- 自定义js -->
+		<script src="../js/content.js?v=1.0.0"></script>
+
+
+		<script type="text/javascript">
+			$(function() {
+				pieChart();
+			})
+
+			function pieChart() {
+				var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
+				var pieoption = {
+					title: {
+						text: '某站点用户访问来源',
+						subtext: '纯属虚构',
+						x: 'center'
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)"
+					},
+					legend: {
+						orient: 'vertical',
+						x: 'left',
+						data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+					},
+					calculable: true,
+					series: [{
+						name: '访问来源',
+						type: 'pie',
+						radius: '55%',
+						center: ['50%', '60%'],
+						data: [{
+								value: 335,
+								name: '直接访问'
+							},
+							{
+								value: 310,
+								name: '邮件营销'
+							},
+							{
+								value: 234,
+								name: '联盟广告'
+							},
+							{
+								value: 135,
+								name: '视频广告'
+							},
+							{
+								value: 1548,
+								name: '搜索引擎'
+							}
+						]
+					}]
+				};
+				pieChart.setOption(pieoption);
+				$(window).resize(pieChart.resize);
+			}
+		</script>
+
+
+	</body>
+
+</html>

@@ -1,0 +1,33 @@
+.circle {
+    height: 110px;
+    width: 172px;
+   // border: 8px solid #B4E3EF;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #0e9aef;
+    text-align:center;
+    line-height:100px;
+    font-size: 30px;
+    color:white;
+}
+.circle2 {
+    height: 110px;
+    width: 400px;
+// border: 8px solid #B4E3EF;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #0e9aef;
+    text-align:center;
+    line-height:100px;
+    font-size: 30px;
+    color:white;
+    left: 190px;
+}
+#name{
+    position: absolute;
+    top: 20px;
+    left: 300px;
+}
+.inputHide{
+    display: none;
+}

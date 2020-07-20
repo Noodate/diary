@@ -1,0 +1,344 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>常用日历代码-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+section.calendar * {
+	margin:0;
+	padding:0;
+}
+.ups,.downs {
+	color:#908c8c;
+}
+section.calendar {
+	background-color:#29323f;
+	font-family:'Dosis',sans-serif;
+	color:#fff;
+	width:290px;
+	padding:45px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translateY(-50%) translateX(-50%);
+	transform:translateY(-50%) translateX(-50%);
+	box-shadow:5px 10px 20px rgba(0,0,0,0.6);
+	border-radius:5px;
+}
+.up {
+	float:left !important;
+	padding:0px 5px !important;
+}
+.down {
+	float:right !important;
+	padding:0px 5px !important;
+}
+section.calendar >.c_float {
+	text-align:center;
+	width:100%;
+	margin:0 0 30px 0;
+}
+section.calendar .tetle {
+	text-align:center;
+	color:#fcee6d;
+	font-size:20px;
+	font-weight:600;
+}
+section.calendar form {
+	position:relative;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-ms-flexbox;
+	display:flex;
+	-webkit-box-orient:horizontal;
+	-webkit-box-direction:normal;
+	-webkit-flex-direction:row;
+	-ms-flex-direction:row;
+	flex-direction:row;
+	-webkit-flex-wrap:wrap;
+	-ms-flex-wrap:wrap;
+	flex-wrap:wrap;
+	-webkit-box-align:start;
+	-webkit-align-items:flex-start;
+	-ms-flex-align:start;
+	align-items:flex-start;
+	-webkit-align-content:flex-start;
+	-ms-flex-line-pack:start;
+	align-content:flex-start;
+}
+section.calendar form label.weekday {
+	display:inline-block;
+	width:25px;
+	margin:8px;
+	text-align:center;
+	color:#999;
+}
+section.calendar form form {
+	margin:0;
+	padding:0;
+}
+section.calendar form label.day {
+	display:inline-block;
+	width:25px;
+	margin:8px;
+}
+section.calendar form label.day span {
+	display:inline-block;
+	width:25px;
+	height:25px;
+	line-height:25px;
+	margin:-2px 0 0 -2px;
+	border-radius:50%;
+	border:2px solid #29323f;
+	text-align:center;
+	-webkit-transition:all .2s linear;
+	transition:all .2s linear;
+	cursor:pointer;
+}
+section.calendar form label.day span:hover {
+	border-color:#e7d84f;
+}
+section.calendar form label.day em {
+	display:inline-block;
+	position:absolute;
+	border-radius:50%;
+	border-color:#29323f;
+	width:3px;
+	height:3px;
+	background-color:#685e02;
+	margin-left:11px;
+	margin-top:2px;
+	opacity:0;
+	-webkit-transition:all .2s linear;
+	transition:all .2s linear;
+}
+section.calendar form label.day input[type=text] {
+	border:0;
+	opacity:0;
+	position:absolute;
+	margin-top:40px;
+	left:-45px;
+	width:380px;
+	height:1px;
+	padding:0;
+	outline:none;
+	font-size:16px;
+	-webkit-transition:height .2s linear,opacity .2s linear,color .02s linear;
+	transition:height .2s linear,opacity .2s linear,color .02s linear;
+	color:#fff;
+}
+section.calendar form label.day input[type=text]:focus {
+	opacity:1;
+	height:35px;
+	padding:10px 40px;
+	left:-45px;
+	width:300px;
+	color:#29323f;
+}
+section.calendar form label.day input[type=text]:focus + span {
+	color:#fcee6d;
+	border-color:#fcee6d;
+	background:#fcee6d;
+	color:#29323f;
+	font-weight:bold;
+	margin-bottom:65px;
+}
+section.calendar form label.day input[type=text]:focus ~ em {
+	border-radius:0;
+	border:5px solid transparent;
+	background:transparent;
+	border-bottom-color:white;
+	margin-top:-62px;
+	margin-left:7px;
+	width:0;
+	height:0;
+	display:inline-block;
+	opacity:1;
+}
+section.calendar form label.day input[type=text]:valid ~ em {
+	display:inline-block;
+	opacity:1;
+}
+section.calendar form label.day.invalid {
+	opacity:0;
+	width:25px;
+	height:25px;
+}
+section.calendar form label.day.invalid span,section.calendar form label.day.invalid input {
+	display:none;
+}
+section.calendar div.clearfix {
+	clear:both;
+}
+section.calendar div.hidden {
+	display:none;
+}
+</style>
+</head>
+<body>
+<section class="calendar">
+    <div class="c_float"> <span class="up upyear">&lt;&lt;</span> <span class="up upmonth">&lt;</span> <span id="tetle" class="tetle"></span> <span class="down downyear">&gt;&gt;</span> <span class="down downmonth">&gt;</span> </div>
+    <form action="#">
+        <label class="weekday">一</label>
+        <label class="weekday">二</label>
+        <label class="weekday">三</label>
+        <label class="weekday">四</label>
+        <label class="weekday">五</label>
+        <label class="weekday">六</label>
+        <label class="weekday">七</label>
+
+
+
+
+        <div class="clearfix"></div>
+    </form>
+</section>
+
+<script>
+var year = '';
+
+var month = '';
+
+var time = '';
+
+var tetle = ".calendar .tetle";
+
+var date = '';
+
+var form = ".calendar form";
+//默认显示日期 
+var stys = rili('', '', '');
+$(form).append(stys);
+//上一年
+$(".upyear").click(function() {
+
+
+
+    var now = new Date(time);
+    year = now.getFullYear(); //得到年份
+    month = now.getMonth(); //得到月份
+    date = now.getDate(); //得到日期 
+    $(".day").remove();
+
+    var stys = rili(year - 1, month, date);
+    $(form).append(stys);
+})
+//下一年
+$(".downyear").click(function() {
+    var now = new Date(time);
+    year = now.getFullYear(); //得到年份
+    month = now.getMonth(); //得到月份
+    date = now.getDate(); //得到日期 
+    $(".day").remove();
+
+    if (Number(month) - 1 > 11) {
+        month = 11;
+
+    }
+
+    var stys = rili(year + 1, month, date);
+    $(form).append(stys);
+})
+//上一个月
+$(".upmonth").click(function() {
+
+
+
+    var now = new Date(time);
+    year = now.getFullYear(); //得到年份
+    month = now.getMonth(); //得到月份
+    date = now.getDate(); //得到日期 
+    $(".day").remove();
+
+    if (Number(month) - 1 < 0) {
+        month = 12;
+        year = Number(year) - 1
+    }
+    var stys = rili(year, month - 1, date);
+    $(form).append(stys);
+})
+//下一个月
+$(".downmonth").click(function() {
+
+
+
+    var now = new Date(time);
+    year = now.getFullYear(); //得到年份
+    month = now.getMonth(); //得到月份
+    date = now.getDate(); //得到日期 
+    $(".day").remove();
+
+
+    var stys = rili(year, month + 1, date);
+    $(form).append(stys);
+})
+//  console.log( new Date(2019,12,01).getMonth())
+
+
+//显示
+function rili(year, month, date) {
+
+    if (year == "" || month == "" || date == "") {
+
+        var now = new Date();
+        if (year == "") year = now.getFullYear(); //得到年份
+        if (month == "") month = now.getMonth(); //得到月份
+        if (date == "") date = now.getDate(); //得到日期 
+
+    }
+    //得到月份
+    if (Number(month) + 1 > 12) {
+
+        month = 1;
+        year = Number(year) + 1
+    } else {
+
+        month = Number(month) + 1;
+    }
+
+    var stime = year + "-" + month + "-" + "1"; //得到当月开始日期
+    var utime = year + "-" + (month - 1) + "-" + "1"; //得到上月开始日期
+    var d = new Date(year, month, 0);
+    var length = d.getDate(); //得到当月天数
+    var month_1 = new Date(year, (month - 1), 0);
+    var ulength = month_1.getDate(); //得到上月天数
+    time = year + "-" + (month) + "-" + date; //得到当前日期  
+    $(tetle).html(time); //添加标题显示当前日期  
+    var etime = year + "-" + month + "-" + length; //得到当月结束日期
+    var elength = 7 - new Date(etime).getDay(); //得到当月结束日期后补充下月天数
+    var w1 = new Date(stime).getDay(); //得到当月开始日期是星期X
+    if (w1 < 1) {
+        w1 = 7
+    }
+    // alert(w1)
+    var sty = '';
+    var ui = ulength - w1
+    //补充开始周信息 2018-7-14
+    for (var i = 0; i < w1; i++) {
+        sty += "<label class='day ups' data-day='" + (ui + 1) + "'>"
+        sty += "<input class='appointment' date-day='" + (ui + 1) + "' placeholder='What would you like to do?' required='true' type='text'>";
+        sty += "<span>" + (ui + 1) + "</span>";
+        sty += " <em></em> </label>";
+        ui++
+    }
+    //展示本月信息
+    for (var i = 0; i < length; i++) {
+        sty += "<label class='day' data-day='" + (i + 1) + "'>"
+        sty += "<input class='appointment' date-day='" + (i + 1) + "' placeholder='What would you like to do?' required='true' type='text'>";
+        sty += "<span>" + (i + 1) + "</span>";
+        sty += " <em></em> </label>";
+    }
+    //补充结束周信息
+    for (var i = 0; i < elength; i++) {
+        sty += "<label class='day downs' data-day='" + (i + 1) + "'>"
+        sty += "<input class='appointment' date-day='" + (i + 1) + "' placeholder='What would you like to do?' required='true' type='text'>";
+        sty += "<span>" + (i + 1) + "</span>";
+        sty += " <em></em> </label>";
+    }
+    return sty;
+}
+</script>
+
+</body>
+</html>

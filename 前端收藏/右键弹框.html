@@ -1,0 +1,122 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>鼠标右键显示弹框提示-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+.clearfix {
+	overflow:hidden;
+	clear:both;
+}
+.up_li {
+	float:left;
+	padding:10px 30px;
+	margin-left:30px;
+	cursor:pointer
+}
+.up_li img {
+	width:50px;
+	height:50px;
+	display:block;
+	margin:0 auto;
+}
+.up_li span {
+	margin-top:10px;
+	text-align:center;
+	font-size:14px
+}
+/*鼠标右击事件*/
+.right_click {
+	position:fixed;
+	display:none;
+}
+.right_click ul li {
+	width:110px;
+	height:30px;
+	line-height:30px;
+	background:#fff;
+	color:#48677c;
+	font-size:12px;
+	box-shadow:2px 1px 2px #c5bebe;
+	text-align:center;
+	cursor:pointer;
+}
+.right_click ul li a {
+	display:block;
+}
+.right_click ul li:hover {
+	background:#3da8f6;
+}
+.right_click ul li:hover a {
+	color:#fff;
+}
+ul li {
+	list-style:none;
+}
+ul li a {
+	text-decoration:none;
+	font-size:16px;
+}
+</style>
+</head>
+<body>
+<div class="ul clearfix">
+    <div class="up_li">
+        <img src="http://www.jq22.com/img/cs/500x500-1.png" alt="">
+        <span>律所人物</span>
+    </div>
+    <div class="up_li">
+        <img src="http://www.jq22.com/img/cs/500x500-2.png" alt="">
+        <span>文案信息</span>
+    </div>
+</div>
+
+<div class="right_click">
+    <ul>
+        <li>
+            <a href="javascript:void(0);" id="datadownload">下载</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" id="share">分享</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);" id="datadel">删除</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+//阻止冒泡事件，即document的事件对li无效
+$(' .ul .up_li').click(function(event) {
+    event.stopPropagation();
+});
+document.oncontextmenu = function() {
+    return false;
+}
+//文件夹右击事件
+$(' .ul .up_li').mousedown(function(event, a) {
+    if (event.which == 1 || a == 'left') {
+        //alert('left click');
+    }
+    if (event.which == 3 || a == 'right') {
+        // alert('right click');
+        $('.right_click').show();
+        var x = event.clientX;
+        var y = event.clientY;
+
+        $(".right_click").show().css({
+            left: x,
+            top: y
+        });
+    }
+});
+
+//点击任意部位隐藏  
+$(document).click(function() {
+    $(".right_click").hide();
+});
+</script>
+
+</body>
+</html>

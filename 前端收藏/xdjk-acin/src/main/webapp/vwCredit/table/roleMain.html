@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>角色管理</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<link rel="stylesheet" href="css/samples-styles.css">
+	<link rel="stylesheet" href="css/ctsi.css">
+	<style type="text/css">
+		td.alt { background-color: #ffc; background-color: rgba(230, 127, 34, 0.2); }
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		//var uid=4; //全局变量
+	</script>
+	<div class="htmleaf-container">
+		<div class="htmleaf-content">
+			<br>
+			<table class="userTable" width="100%">
+				<thead>
+					<tr>
+			                <th scope="col">分行地区</th>
+							<th scope="col">角色等级</th>
+			                <th scope="col">菜单</th>
+							<th scope="col">操作</th>
+			            </tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+	
+	<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="js/jquery.filtertable.min.js"></script>
+	<script>
+	    $(document).ready(function() {
+	        $('table').filterTable({ // apply filterTable to all tables on this page
+	            inputSelector: '#input-filter' // use the existing input instead of creating a new one
+	        });
+	    });
+	</script>
+</body>
+</html>
+<script>
+	$(function () {
+        $.ajax({
+            url: "/role/getRoles",
+            contentType: "application/json;charset=UTF-8",
+            //data:JSON.stringify(params),
+            //dataType:"json",
+            type: "POST",
+            success: function(data){
+                var list = data.data;
+                console.log(list);
+                if(list.length>0){
+					for(var i=0;i<list.length;i++){
+					    var menu_name=getMenuName(list[i].list);
+						$('.userTable').append( " <tr>\n" +
+							"<td>"+list[i].area+"</td>\n" +
+							"<td>"+list[i].role_name+"</td>\n" +
+							"<td>"+menu_name.toString()+"</td>\n" +
+                            "<td hidden>"+list[i].area_id+'|'+list[i].menu_id+'|'+list[i].role_number+"</td>\n" +
+                            "<td><button onclick='powerEdit(this)'>编辑</button></td>\n" +
+							"</tr>");
+					}
+                }
+            },
+            error : function(e) {
+                alert("error !");
+            }
+        })
+    })
+	function getMenuName(data) {
+	    var menu_name =new Array();
+	    for(var i=0;i<data.length;i++){
+            menu_name[i]=data[i].menu_name;
+		}
+		return menu_name;
+    }
+    function powerEdit(obj){
+	    console.log($(obj).parent("td").parent("tr").find("td:eq(3)").text());
+        window.open ("../table/roleEdit.html?id="+encodeURI($(obj).parent("td").parent("tr").find("td:eq(3)").text()+'|'+$(obj).parent("td").parent("tr").find("td:eq(0)").text()+'|'+$(obj).parent("td").parent("tr").find("td:eq(1)").text())+"","","width=800,height=600,top=180px,left=580px, toolbar =no, menubar=no, scrollbars=yes, resizable=no, location=no, status=no");
+
+
+        // var params={"area":$(obj).parent("td").parent("tr").find("td:eq(0)").text(),"role_name":$(obj).parent("td").parent("tr").find("td:eq(1)").text(),"menuList":$(obj).parent("td").parent("tr").find("td:eq(2)").text()};
+        // $.ajax({
+        //     url: "/role/setRoles",
+        //     contentType: "application/json;charset=UTF-8",
+        //     data:JSON.stringify(params),
+        //     dataType:"json",
+        //     type: "POST",
+        //     success: function(data){
+        //       	alert("修改成功");
+        //       	loaction.reload();
+        //     },
+        //     error : function(e) {
+        //         alert("error !");
+        //         alert(e);
+        //     }
+        // })
+	}
+</script>

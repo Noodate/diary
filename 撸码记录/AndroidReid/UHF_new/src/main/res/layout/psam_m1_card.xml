@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+   
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" 
+        >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+			
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/card_id" />
+            <EditText 
+                android:id="@+id/m1_card_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:singleLine="true"
+                android:editable="false"
+                android:focusable="false"
+                />
+            
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+            
+			
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/card_type" />
+            <EditText 
+                android:id="@+id/m1_card_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="false"
+                android:focusable="false"
+                />
+            
+        </TableRow>
+         <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sector" />
+            <EditText 
+                android:id="@+id/m1_sector"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="10"
+                android:singleLine="true"
+                android:numeric="integer"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/block" />
+
+            <Spinner
+                android:id="@+id/part"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4" />
+            
+                />
+        </TableRow>
+         <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+			<RadioGroup 
+			    android:id="@+id/password_group"
+			android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+			    >
+			<RadioButton 
+			    android:id="@+id/password_a"
+			 android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_a"
+            android:checked="true"
+			        />
+			
+			<RadioButton 
+			    android:id="@+id/password_b"
+			 android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_b"
+			        />
+			</RadioGroup>
+        </TableRow>
+        <TableRow 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:gravity="center"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="@string/password" />
+            <EditText 
+                android:id="@+id/password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:singleLine="true"
+                android:text="FFFFFFFFFFFF"
+                />
+        </TableRow>
+        <TableRow 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            >
+          <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:gravity="right"
+                android:text="@string/read_data" />
+            <EditText 
+                android:id="@+id/m1_read_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:singleLine="true"
+                android:focusable="false"
+                android:editable="false"
+                android:textSize="11sp"
+                />  
+        </TableRow>
+        
+         <TableRow 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            >
+          <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:gravity="right"
+                android:text="@string/write_data" />
+            <EditText 
+                android:id="@+id/m1_write_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:singleLine="true"
+                android:text="00000000000000000000000000000000"
+                android:textSize="11sp"
+                />  
+        </TableRow>
+         <TableRow 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            >
+             <Button 
+                 android:id="@+id/m1_search_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/get_UID"
+                 />
+              <Button 
+                 android:id="@+id/m1_authentication"
+                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/authentication"
+                 />
+         </TableRow>
+         <TableRow 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            >
+
+             <Button
+                 android:id="@+id/m1_read_data_btn"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:text="@string/read" />
+
+             <Button 
+                 android:id="@+id/m1_write_card"
+               android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/write"
+                 />
+         </TableRow>
+         <TableRow 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            >
+         </TableRow>
+    </TableLayout>
+</RelativeLayout>

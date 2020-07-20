@@ -1,0 +1,7 @@
+/build/
+/config/
+/src/
+/dist/views/login.vue
+/*.js
+index.html
+/static/plugins/pdf/

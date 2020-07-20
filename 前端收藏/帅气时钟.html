@@ -1,0 +1,161 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>滚动数字时钟-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+* {
+	padding:0;
+	margin:0;
+	list-style:none;
+	vertical-align:middle;
+}
+body {
+	background:#000;
+	color:#333;
+	font-size:36px;
+}
+ul {
+	width:36px;
+	position:absolute;
+	transition:all .75s;
+}
+div {
+	width:36px;
+	position:absolute;
+	color:#FFFFFF;
+	top:36px;
+}
+nav {
+	width:290px;
+	margin:100px auto;
+	position:relative;
+	height:108px;
+	overflow:hidden;
+}
+li {
+	height:36px;
+}
+li.active {
+	color:#fff;
+}
+</style>
+</head>
+<body>
+<nav>
+    <ul style="left: 0;">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ul>
+    <ul style="left: 36px;">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+    </ul>
+    <div style="left: 72px;">
+        <p>:</p>
+    </div>
+    <ul style="left: 108px;">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <ul style="left: 144px;">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+    </ul>
+    <div style="left: 180px;">
+        <p>:</p>
+    </div>
+    <ul style="left: 216px;">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <ul style="left: 252px;">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+    </ul>
+</nav>
+
+<script>
+ time();
+ setInterval(time, 1000)
+
+ function time() {
+     var Nowtime = new Date();
+     var h = Nowtime.getHours();
+     if (h < 10) h = '0' + h;
+     var m = Nowtime.getMinutes();
+     if (m < 10) m = '0' + m;
+     var s = Nowtime.getSeconds();
+     if (s < 10) s = '0' + s;
+     //获得字符串时间
+     var str = '' + h + m + s;
+     var ul = document.getElementsByTagName('ul');
+     var li = document.getElementsByTagName('li');
+     //灰掉所有li
+     for (var i = 0; i < li.length; i++) {
+         li[i].className = ''
+     }
+     //字符串时间与每个ul关联
+     for (var i = 0; i < ul.length; i++) {
+         //
+         ul[i].style.top = (parseInt(str[i]) - 1) * (-36) + 'px';
+         //当前li样式激活
+         ul[i].getElementsByTagName('li')[str[i]].className = 'active'
+
+     }
+     // console.log(str)
+ }
+ 
+ $(function(){
+	console.log(1);
+	$.ajax({ 
+      type : "POST", 
+      url : "https://server.example.com"+ "/service/token",  
+   //   data : JSON.stringify(
+	//		  [Authorization: Basic czZCaGRSa3F0MzpnWDFmQmF0M2JW]
+		//	 ), 
+  //    contentType : "application/x-www-form-urlencoded; charset=UTF-8", 
+      dataType : "json", 
+      complete:function(msg) { 
+        console.log(msg);
+      } 
+    }); 
+ })
+</script>
+
+</body>
+</html>

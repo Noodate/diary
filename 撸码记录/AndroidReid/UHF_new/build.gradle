@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        applicationId "com.handheld.UHFDemo2LongerNew"
+        minSdkVersion 17
+        targetSdkVersion 17
+
+        multiDexEnabled true
+        versionCode 5
+        versionName '1.5'
+    }
+    lintOptions {//设置编译的lint开关，程序在buid的时候，会执行lint检查，有任何的错误或者警告提示，都会终止构建
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+
+    signingConfigs {
+        release {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('C:/Users/ssc/.android/debug.keystore')
+            storePassword 'android'
+        }
+    }
+
+}
+
+dependencies {
+    //compile 'com.android.support:support-v4:20.0.0'
+    compile files('libs/support-annotations-20.0.0.jar')
+    compile files('libs/support-v4-19.0.0.jar')
+    compile files('libs/ModuleAPI_J.jar')
+    compile files('libs/uhflonger_v1.3.jar')
+    compile files('libs/jxl-2.6.12.jar')
+    compile files('libs/poi-3.12.jar')
+    compile files('libs/poi-ooxml-3.12.jar')
+    compile files('libs/SenterOpenApi_IoT_1.2.3.95_Function_UltraHighFrequency_ModelI.jar')
+    compile files('libs/SenterOpenApi_IoT_1.2.3.95_Common.jar')
+
+
+}
+
+
+
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath group: 'org.tmatesoft.svnkit', name: 'svnkit', version: '1.8.14'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+
+    }
+}
+
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral ()
+        maven {url 'https://dl.bintray.com/jetbrains/anko'} //这是你需要加入的，这个是解决这个问题的关键地方，我就是添加这个maven后不再报上面的错误了
+        maven {url "https://maven.google.com"} //谷歌广告
+    }
+}
+
+
+

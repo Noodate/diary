@@ -1,0 +1,88 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.ivu-table-tip table td {
+  height: 190px;
+}
+.ivu-input[disabled], fieldset[disabled] .ivu-input{
+  color:rgba(0, 0, 0, 0.45);
+}
+.switchDisabled{
+  .ivu-switch-disabled {
+    .ivu-switch-inner {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+/*Clear float*/
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0.1px;
+  font-size: 0.1em;
+  line-height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 100%;
+}
+
+.alignMiddle {
+  display: flex;
+  //justify-content:center;
+  align-items: Center;
+}
+
+/*float*/
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+/* color */
+$default-color: #2d8cf0;
+$content-color: #333;
+$gray: #e5e5e5;
+$font-white: rgba(255, 255, 255, 1);
+$font-white-light: rgba(255, 255, 255, 0.65);
+$font-gray-light: rgba(0, 0, 0, 0.45);
+$font-gray-weight: rgba(0, 0, 0, 0.85);
+$error: #ed3f14;
+$success: #19be6b;
+$warn: #ff9900;
+$contentSize: 14px;
+$warn-light: rgb(243, 156, 18);
+$default-font-color: #2d8cf0;
+/* bg-color */
+$bg-sidebar: #001529;
+$bg-login: #f0f2f5;
+$bg-gray: #e6e6e6;
+/*超过某固定宽度以省略号形式展示,单行文本*/
+@mixin Ellipsis($width) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: $width;
+}
+
+@mixin dashBottom {
+  border-bottom: 1px dashed #dce1e7;
+}
+
+@mixin dashTop {
+  border-top: 1px dashed #dce1e7;
+}

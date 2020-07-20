@@ -1,0 +1,49 @@
+<view class="allClass">
+  <view class="first_part">
+    <image mode="aspectFill" src="{{src}}" class="image_class"/>
+  </view>
+  <view class="second_part" a:if="{{type=='front'}}">
+    <view class="part_title">— 识别结果 —</view>
+    <view class="ocr_row">
+      <view class="ocr_title">姓名</view>
+      <view class="ocr_value">{{name}}</view>
+    </view>
+    <view class="ocr_row">
+      <view class="ocr_title">性别</view>
+      <view class="ocr_value">{{sex}}</view>
+    </view>
+    <view class="ocr_row">
+      <view class="ocr_title">民族</view>
+      <view class="ocr_value">{{nationality}}</view>
+    </view>
+    <view class="ocr_row">
+      <view class="ocr_title">出生日期</view>
+      <view class="ocr_value">{{birth}}</view>
+    </view>
+    <view class="ocr_row">
+      <view class="ocr_title">地址</view>
+      <view class="ocr_value">{{address}}</view>
+    </view>
+    <view class="ocr_row">
+      <view class="ocr_title">身份证号</view>
+      <view class="ocr_value">{{number}}</view>
+    </view>
+  </view>
+  <view class="second_part" a:if="{{type=='back'}}">
+    <view class="part_title">— 识别结果 —</view>
+    <view class="ocr_row">
+      <view class="ocr_title">签发机关</view>
+      <view class="ocr_value">{{authority}}</view>
+    </view>
+    <view class="ocr_row">
+      <view class="ocr_title">有效期限</view>
+      <view class="ocr_value">{{date}}</view>
+    </view>
+  </view>
+  <view class="third_part">
+    <view class="copy" onTap="copyOcr">
+      <image mode="scaleToFill" src="/image/main/copy.png" class="copy_image"/>
+      <view class="copy_span">复制</view>
+    </view>
+  </view>
+</view>

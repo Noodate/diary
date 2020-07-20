@@ -1,0 +1,89 @@
+<view class="page">
+  <!-- 图标 -->
+  <view a:if={{record_state=='0'}} class="icon_wait"></view>
+  <view a:if={{record_state=='1'}} class="icon_pass"></view>
+  <view a:if={{record_state=='2'}} class="icon_notPass"></view>
+  <!-- 人 -->
+  <view class="page-section" style="height: 4.8rem;">
+    <view class="form-row">
+      <view class="form-row-label">姓名</view>
+      <view class="form-row-content">
+        <text>{{name}}</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">身份证号码</view>
+      <view class="form-row-content">
+        <text>{{idCard}}</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">地址</view>
+      <view class="form-row-content">
+        <text>{{area}}</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">签发单位</view>
+      <view class="form-row-content">
+        <text>{{company}}</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">有效期限</view>
+      <view class="form-row-content">
+        <text>{{validTime}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 公司 -->
+  <view class="page-section" style='height:4.5rem'>
+    <view class="form-row">
+      <view class="form-row-label">公司姓名</view>
+      <view class="form-row-content">
+        <text>{{business_name}}</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">公司地址</view>
+      <view class="form-row-content">
+        <text>{{business_address}}</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">执照编码</view>
+      <view class="form-row-content">
+        <text>{{business_number}}</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">注册资金</view>
+      <view class="form-row-content">
+        <text>{{business_salary}}元</text>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">注册日期</view>
+      <view class="form-row-content">
+        <text>{{business_date}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 图片 -->
+  <view class="page-section" a:for="{{array}}" a:for-item="item">
+    <view class="page-section-title">{{item.text}}</view>
+    <view class="page-section-demo">
+      <image class="image"
+        data-name="{{item.mode}}"
+        onTap="previewImage"
+        mode="{{item.mode}}" src="{{item.src}}" onError="imageError" onLoad="imageLoad" />
+    </view>
+  </view>
+  <!-- 失败原因 -->
+  <view  a:if={{record_state=='2'}} class="page-section" style="height: 3rem;">
+    <view class="page-section-title">失败原因</view>
+      <text class="failReason">{{failReason}}</text>
+    </view>
+    <button a:if={{record_state=='2'}} type="primary" onTap="updateToService">修改</button>
+  </view>
+</view>

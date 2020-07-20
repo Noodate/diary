@@ -1,0 +1,523 @@
+<view style="width:100%;overflow-x:hidden;">
+  <!-- 企业基本信息 -->
+  <view class="partTitle">企业基本信息</view>
+  <view class="page-section">
+    <block a:if="{{!disabled}}">
+      <view class="idCard_orc" onTap="ocr" data-index="business_card">
+        <view class="idCard"></view>
+        <view class="ocr_idCard">识别营业执照
+          <view class="ocr_idCard_explain">高效采集营业执照信息</view>
+        </view>
+      </view>
+    </block>
+    <view class="form-row">
+      <view class="form-row-label">企业名称</view>
+      <view class="form-row-content">
+        <input type="test" class="input" data-index="business_name" onInput="bindKeyInput" placeholder="请填写全称" value="{{business_name}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">企业类型</view>
+      <view class="form-row-content">
+        <input class="input" a:if="{{disabled}}" data-index="business_type" value="{{business_type}}" disabled="{{disabled}}"/>
+        <picker a:if="{{!disabled}}" data-index="type" onChange="bindPickerChange" range="{{type_array}}">
+          <view class="row2">
+            <label>
+              <text>{{business_type}}</text>
+            </label>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">公司地址</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_address" onInput="bindKeyInput" value="{{business_address}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row" onTap="touchMoney">
+      <view class="form-row-label">注册资本</view>
+      <view class="form-row-content" style="display:flex">
+        <input class="input" data-index="business_salary" onInput="bindKeyInput" placeholder="请填写营业执照上的注册资本" value="{{business_salary}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">经营范围</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_scope" onInput="bindKeyInput" value="{{business_scope}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">公司法人</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_lawer" onInput="bindKeyInput" value="{{business_lawer}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">成立日期</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_date" onInput="bindKeyInput" value="{{business_date}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">营业期限</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_term" onInput="bindKeyInput" value="{{business_term}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">地区代码</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_area_code" onInput="bindKeyInput" placeholder="开户许可证核准号字母J后六位数字"  value="{{business_area_code}}"  disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">行业分类</view>
+      <view class="form-row-content">
+        <view class="industry_type_style" data-index="industry_type" onTap="show_industry_type" >{{industry_type}}</view>
+        <form a:if="{{show_checkbox_dialog}}" onSubmit="submit_industry_type">
+          <checkbox-group onChange="onChange" name="libs" class="checkbox_dialog">
+            <label class="checkbox" a:for="{{industry_type_items}}" key="label-{{index}}">
+              <checkbox value="{{item.name}}" checked="{{item.checked}}" disabled="{{item.disabled}}" />
+              <text class="checkbox-text">{{item.value}}</text>
+            </label>
+          </checkbox-group>
+          <button size="mini" class="industry_type_button" formType="submit" type="primary">确定</button>
+        </form>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">企业电话</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_phone" onInput="bindKeyInput" placeholder="" value="{{business_phone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">企业邮编</view>
+      <view class="form-row-content">
+        <input class="input" data-index="business_post_code" onInput="bindKeyInput" placeholder="" value="{{business_post_code}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+  </view>
+  <!-- 经办人基本信息 -->
+  <view a:if="{{corporationOrOperator=='operator'}}" class="partTitle">经办人基本信息</view>
+  <block a:if="{{!disabled&&corporationOrOperator=='operator'}}">
+    <view class="idCard_orc" onTap="idCardOcr" data-index="jingbanren">
+      <view class="idCard"></view>
+      <view class="ocr_idCard">识别身份证
+        <view class="ocr_idCard_explain">高效采集身份证信息</view>
+      </view>
+    </view>
+  </block>
+  <view class="page-section" a:if="{{corporationOrOperator=='operator'}}">
+    <view class="form-row">
+      <view class="form-row-label">姓名</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorName" onInput="bindKeyInput" value="{{operatorName}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">性别</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorSex" onInput="bindKeyInput" value="{{operatorSex}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">民族</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorNationality" onInput="bindKeyInput" value="{{operatorNationality}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">出生日期</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorBirth" onInput="bindKeyInput" value="{{operatorBirth}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">身份证号</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorNumber" onInput="bindKeyInput" value="{{operatorNumber}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">地址</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorAddress" onInput="bindKeyInput" value="{{operatorAddress}}" disabled="{{disabled}}"/>
+        <!--<textarea onBlur="bindTextAreaBlur" auto-height value="{{area}}"/> -->
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">签发机关</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorAuthority" onInput="bindKeyInput" value="{{operatorAuthority}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">有效期限</view>
+      <view class="form-row-content">
+        <input class="input" data-index="operatorDate" onInput="bindKeyInput" value="{{operatorDate}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <block a:if="{{!disabled}}">
+      <view class="idCard_orc" onTap="testOneSelf">
+        <view class="test_oneself"></view>
+        <view class="ocr_idCard">人证比对
+          <view class="ocr_idCard_explain">精准比对人证信息</view>
+        </view>
+        <view a:if="{{!primaryComparedResult==''}}">
+          <view class="ssim">相似度{{primaryComparedResult}}%</view>
+        </view>
+      </view>
+    </block>
+    <block a:if="{{disabled}}">
+      <view class="form-row">
+        <view class="form-row-label">人证比对</view>
+        <view class="form-row-content">
+          <input class="input" value="相似度{{primaryComparedResult}}%" disabled="{{disabled}}"/>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 法人基本信息 -->
+  <view class="partTitle">法定代表人基本信息</view>
+  <block a:if="{{!disabled}}">
+    <view class="idCard_orc" onTap="idCardOcr" data-index="faren">
+      <view class="idCard"></view>
+      <view class="ocr_idCard">识别身份证
+        <view class="ocr_idCard_explain">高效采集身份证信息</view>
+      </view>
+    </view>
+  </block>
+  <view class="page-section">
+    <view class="form-row">
+      <view class="form-row-label">姓名</view>
+      <view class="form-row-content">
+        <input class="input" data-index="name" onInput="bindKeyInput" value="{{name}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">性别</view>
+      <view class="form-row-content">
+        <input class="input" data-index="sex" onInput="bindKeyInput" value="{{sex}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">民族</view>
+      <view class="form-row-content">
+        <input class="input" data-index="nationality" onInput="bindKeyInput" value="{{nationality}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">出生日期</view>
+      <view class="form-row-content">
+        <input class="input" data-index="birth" onInput="bindKeyInput" value="{{birth}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">身份证号</view>
+      <view class="form-row-content">
+        <input class="input" data-index="number" onInput="bindKeyInput" value="{{number}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">地址</view>
+      <view class="form-row-content">
+        <input class="input" data-index="address" onInput="bindKeyInput" value="{{address}}" disabled="{{disabled}}"/>
+        <!--<textarea onBlur="bindTextAreaBlur" auto-height value="{{area}}"/> -->
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">签发机关</view>
+      <view class="form-row-content">
+        <input class="input" data-index="authority" onInput="bindKeyInput" value="{{authority}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row">
+      <view class="form-row-label">有效期限</view>
+      <view class="form-row-content">
+        <input class="input" data-index="date" onInput="bindKeyInput" value="{{date}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <block a:if="{{!disabled&&corporationOrOperator=='corporation'}}">
+      <view class="idCard_orc" onTap="testOneSelf">
+        <view class="test_oneself"></view>
+        <view class="ocr_idCard">人证比对
+          <view class="ocr_idCard_explain">精准比对人证信息</view>
+        </view>
+        <view a:if="{{!ssim==''}}">
+          <view class="ssim">相似度{{ssim}}%</view>
+        </view>
+      </view>
+    </block>
+    <block a:if="{{disabled&&corporationOrOperator=='corporation'}}">
+      <view class="form-row">
+        <view class="form-row-label">人证比对</view>
+        <view class="form-row-content">
+          <input class="input" value="相似度{{ssim}}%" disabled="{{disabled}}"/>
+          <!--<view class="ssim_pass">相似度{{ssim}}%</view> -->
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 开户基本信息 -->
+  <view class="partTitle">开户基本信息</view>
+  <view>
+    <block a:if="{{!disabled}}">
+      <view class="idCard_orc" onTap="ocr" data-index="approval">
+        <view class="idCard"></view>
+        <view class="ocr_idCard">识别开户许可证
+          <view class="ocr_idCard_explain">高效采集开户许可证信息</view>
+        </view>
+      </view>
+    </block>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">开户许可证核准号</view>
+      <view class="form-row-content">
+        <input class="input" data-index="approval_number" onInput="bindKeyInput" placeholder="" value="{{approval_number}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">公司名称</view>
+      <view class="form-row-content">
+        <input class="input" data-index="depositor_name" onInput="bindKeyInput" placeholder="" value="{{depositor_name}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">存款人类别</view>
+      <view class="form-row-content">
+        <input class="input" a:if="{{disabled}}" data-index="depositor_type" value="{{depositor_type}}" disabled="{{disabled}}"/>
+        <picker a:if="{{!disabled}}" data-index="depositor_type" onChange="bindPickerChange" range="{{depositor_array}}">
+          <view class="row2">
+            <label>
+              <text>{{depositor_type}}</text>
+            </label>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">证明文件种类</view>
+      <view class="form-row-content">
+        <view class="longView" data-index="proveFileType" onTap="bindKeyInput">{{proveFileType}}</view>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">证明文件编号</view>
+      <view class="form-row-content">
+        <input class="input" data-index="card_number" onInput="bindKeyInput" placeholder="" value="{{card_number}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">法定代表人</view>
+      <view class="form-row-content">
+        <input class="input" data-index="law_name" onInput="bindKeyInput" placeholder="" value="{{law_name}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">证件种类</view>
+      <view class="form-row-content">
+        <input class="input" a:if="{{disabled}}" data-index="card_type" value="{{card_type}}" disabled="{{disabled}}"/>
+        <picker a:if="{{!disabled}}" data-index="range" onChange="bindPickerChange" range="{{range_array}}">
+          <view class="row2">
+            <label>
+              <text>{{card_type}}</text>
+            </label>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">证件编号</view>
+      <view class="form-row-content">
+        <input class="input" data-index="card_num" onInput="bindKeyInput" placeholder="" value="{{card_num}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">法人固定电话</view>
+      <view class="form-row-content">
+        <input class="input" data-index="lawFixPhone" onInput="bindKeyInput" value="{{lawFixPhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">法人移动电话</view>
+      <view class="form-row-content">
+        <input class="input" data-index="lawMovePhone" onInput="bindKeyInput" value="{{lawMovePhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">对账方式</view>
+      <view class="form-row-content">
+        <input class="input" a:if="{{disabled}}" data-index="reconciliationMethod" value="{{reconciliationMethod}}" disabled="{{disabled}}"/>
+        <picker a:if="{{!disabled}}" data-index="reconciliationMethod" onChange="bindPickerChange" range="{{reconciliationMethod_array}}">
+          <view class="row2">
+            <label>
+              <text>{{reconciliationMethod}}</text>
+            </label>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">对账频率</view>
+      <view class="form-row-content">
+        <input class="input" a:if="{{disabled}}" data-index="reconciliationFrequency" value="{{reconciliationFrequency}}" disabled="{{disabled}}"/>
+        <picker a:if="{{!disabled}}" data-index="reconciliationFrequency" onChange="bindPickerChange" range="{{reconciliationFrequency_array}}">
+          <view class="row2">
+            <label>
+              <text>{{reconciliationFrequency}}</text>
+            </label>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">同意开通网上银行业务</view>
+      <view class="form-row-content">
+        <input class="input" a:if="{{disabled}}" data-index="is_check" value="{{is_check}}" disabled="{{disabled}}"/>
+        <picker a:if="{{!disabled}}" data-index="is_check" onChange="bindPickerChange" range="{{is_check_array}}">
+          <view class="row2">
+            <label>
+              <text>{{is_check}}</text>
+            </label>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">是否开例</view>
+      <view class="form-row-content">
+        <input class="input" a:if="{{disabled}}" data-index="ifOpen" value="{{ifOpen}}" disabled="{{disabled}}"/>
+        <picker a:if="{{!disabled}}" data-index="ifOpen" onChange="bindPickerChange" range="{{ifOpen_array}}">
+          <view class="row2">
+            <label>
+              <text>{{ifOpen}}</text>
+            </label>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <!-- 财会人员基本信息 -->
+  <view class="partTitle">财会人员基本信息</view>
+  <view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle ">财会负责人
+        <view class="financeSpan"></view></view>
+      <view class="form-row-content">
+        <input class="input" data-index="financeManagerName" onInput="bindKeyInput" placeholder="姓名" value="{{financeManagerName}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="financeSpan2"></view>
+      <view class="form-row-content">
+        <input class="input" data-index="financeManagerPhone" onInput="bindKeyInput" placeholder="固定电话" value="{{financeManagerPhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="financeSpan2"></view>
+      <view class="form-row-content">
+        <input class="input" data-index="financeManagerMobilePhone" onInput="bindKeyInput" placeholder="移动电话" value="{{financeManagerMobilePhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle ">财会人员
+        <view class="financeSpan"></view></view>
+      <view class="form-row-content">
+        <input class="input" data-index="financeName" onInput="bindKeyInput" placeholder="姓名" value="{{financeName}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="financeSpan2"></view>
+      <view class="form-row-content">
+        <input class="input" data-index="financePhone" onInput="bindKeyInput" placeholder="固定电话" value="{{financePhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="financeSpan2"></view>
+      <view class="form-row-content">
+        <input class="input" data-index="financeMobilePhone" onInput="bindKeyInput" placeholder="移动电话" value="{{financeMobilePhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle ">对账联系人
+        <view class="financeSpan"></view></view>
+      <view class="form-row-content">
+        <input class="input" data-index="verifyFinanceName" onInput="bindKeyInput" placeholder="姓名" value="{{verifyFinanceName}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="financeSpan2"></view>
+      <view class="form-row-content">
+        <input class="input" data-index="verifyFinancePhone" onInput="bindKeyInput" placeholder="固定电话" value="{{verifyFinancePhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="financeSpan2"></view>
+      <view class="form-row-content">
+        <input class="input" data-index="verifyFinanceMobilePhone" onInput="bindKeyInput" placeholder="移动电话" value="{{verifyFinanceMobilePhone}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+    <view class="form-row2">
+      <view class="form-row-label longTolittle">纸质对账单寄送地址</view>
+      <view class="form-row-content">
+        <input class="input" data-index="verifyFinanceAddress" onInput="bindKeyInput" placeholder="" value="{{verifyFinanceAddress}}" disabled="{{disabled}}"/>
+      </view>
+    </view>
+  </view>
+  <!-- 视频图片上传 -->
+  <view >
+    <view class="partTitle">图片及视频信息</view>
+    <scroll-view class="mediaList" scroll-x="{{true}}">
+      <block a:for="{{mediaList}}">
+        <image mode="aspectFill" src="{{item.src}}" a:if="{{item.src=='/image/main/mediaAddImage.png'&&item.type=='image'}}" onTap="actionSheetTap" class="image_class"/>
+        <image mode="aspectFill" data-index="{{item.imageIndex}}" data-name="{{item.name}}" data-src="{{item.src}}" onLongTap="rename" src="{{item.src}}" a:if="{{item.src!='/image/main/mediaAddImage.png'&&item.type=='image'}}" onTap="previewImage" class="image_class"/>
+        <image a:if="{{item.type=='video'}}" data-name="{{item.name}}" data-src="{{item.src}}" onLongTap="rename" src='/image/main/video.png' data-index="{{item.src}}" onTap="playVideo" class="image_class"></image>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 生成模板 -->
+  <view a:if="{{record_id!=''}}">
+    <view class="partTitle">模板基本信息</view>
+    <scroll-view class="mediaList" scroll-x="{{true}}" style="display:flex;height:2rem">
+      <block a:for="{{modelList}}">
+        <view onTap="saveModel" data-index="{{item.index}}">
+          <image mode="aspectFill" src="{{item.src}}" class="image_class"/>
+          <label style="margin-top:0px">{{item.name}}</label>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 默认审核人 -->
+  <view class="page-section">
+    <picker onChange="bindObjPickerChange" value="{{arrIndex}}" range="{{arrayExamine}}" range-key="name" disabled="{{disabled}}">
+      <view class="row">
+        <view class="row-title">审核人</view>
+        <view class="row-extra">当前选择：{{arrayExamine[arrIndex].name}}</view>
+        <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+      </view>
+    </picker>
+  </view>
+  <!-- 提交按钮 -->
+  <view class="submitClass">
+    <button class="temporary_submit" data-index="3" onTap="uploadFile" a:if="{{!disabled}}">暂存代办</button>
+    <button class="examine_submit" data-index="0" onTap="uploadFile" a:if="{{!disabled}}">提交审核</button>
+  </view>
+  <!-- 视频展示 -->
+  <view a:if="{{videoSrc!=''}}" class="videoBoxSize">
+    <video src="{{videoSrc}}" class="videoSize" autoplay="true"></video>
+    <view onTap="hideVideo" class="fontSize">X</view>
+  </view>
+  <!-- 重命名 -->
+  <view class="rename" a:if="{{renameShow}}">
+    <view class="form-row">
+      <view class="form-row-label">重命名</view>
+      <view class="form-row-content">
+        <input class="renameinput" data-index="rename" onInput="bindKeyInput" value="{{rename}}" />
+      </view>
+    </view>
+    <view class="renameSubmit">
+      <button size="mini" onTap="renameSubmit">确定</button>
+    </view>
+  </view>
+</view>

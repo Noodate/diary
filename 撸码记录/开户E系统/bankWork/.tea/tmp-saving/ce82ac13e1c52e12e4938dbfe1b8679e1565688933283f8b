@@ -1,0 +1,752 @@
+Page({
+  data: {
+    showView: true,
+    disabled: false,
+    idCardFrontSrc: '',
+    idCardBackSrc: '',
+    selfImageSrc: '',
+
+    business_name: '',
+    business_type: '',
+    business_address: '',
+    business_salary: '',
+    business_time: '',
+    business_term: '',
+    business_scope: '',
+
+    name: '',
+    sex: '',
+    nationality: '',
+    birth: '',
+    number: '',
+    address: '',
+    authority: '',
+    date: '',
+
+    ssim: '',
+
+    userid: '',
+
+    record_id: '',
+
+    mediaList: [
+      {
+        type: 'image',
+        src: '/image/main/mediaAddImage.png',
+      },
+    ],
+
+    arrayExamine: [],
+    arrIndex: 0,
+
+
+  },
+  scrollToTop(e) {
+    this.setData({
+      scrollTop: 0,
+    });
+  },
+  tap(e) {
+    for (let i = 0; i < order.length; ++i) {
+      if (order[i] === this.data.toView) {
+        const next = (i + 1) % order.length;
+        this.setData({
+          toView: order[next],
+          scrollTop: next * 200,
+        });
+        break;
+      }
+    }
+  },
+  tapMove() {
+    this.setData({
+      scrollTop: this.data.scrollTop + 10,
+    });
+  },
+  onPullDownRefresh() {
+    this.onReady();
+    dd.stopPullDownRefresh();
+  },
+  onLoad(service) {
+    this.reset();
+    // 页面加载
+    var that = this;
+    dd.httpRequest({
+      url: getApp().data.ip + '/check/allChecker',
+      method: 'POST',
+      headers: { 'content-type': 'application/json;charset=utf-8' },
+      success: (res) => {
+        let xx = new Array();
+        let x = new Object();
+        x.id = '0';
+        x.checker_id = '';
+        x.name = '无';
+        xx.push(x);
+        let i = 1;
+        res.data.forEach((element) => {
+          let x = new Object();
+          x.id = i;
+          x.checker_id = element.checker_id;
+          x.name = element.realname;
+          xx.push(x);
+          i++;
+        })
+        this.setData({
+          arrayExamine: xx
+        })
+      },
+    })
+    if (service.param == 'edit') {
+      dd.httpRequest({
+        url: getApp().data.ip + '/center/recordDetail?recordId=' + service.id,
+        method: 'GET',
+        headers: { 'content-type': 'application/json;charset=utf-8' },
+        success: (res) => {
+          console.log('state:  ' + res.data.data.record_state);
+          console.log(res);
+          var that = this;
+          for (let i = 0; i < that.data.arrayExamine.length; i++) {
+            if (res.data.data.check_id == that.data.arrayExamine[i].checker_id) {
+              that.setData({
+                arrIndex: i
+              })
+            }
+          }
+          let xx = new Array();
+          let x = new Object();
+          //判断是否是成功的，是则表单都不可改
+          if (res.data.data.record_state == '1') {
+            x.type = "image";
+            x.src = "";
+            xx.push(x);
+            this.setData({
+              disabled: true,
+            })
+          } else {
+            x.type = "image";
+            x.src = "/image/main/mediaAddImage.png";
+            xx.push(x);
+          }
+          res.data.data.mediaList.forEach((element) => {
+            xx.push(element);
+          })
+          that.setData({
+            userid: service.userid,
+
+            business_name: res.data.data.business_name,
+            business_type: res.data.data.business_type,
+            business_address: res.data.data.business_address,
+            business_salary: res.data.data.business_salary,
+            business_time: res.data.data.business_time,
+            business_term: res.data.data.business_term,
+            business_scope: res.data.data.business_scope,
+
+            name: res.data.data.idcard_name,
+            sex: res.data.data.idcard_sex,
+            nationality: res.data.data.idcard_nationality,
+            birth: res.data.data.idcard_birth,
+            number: res.data.data.idcard_number,
+            address: res.data.data.idcard_address,
+            authority: res.data.data.idcard_authority,
+            date: res.data.data.idcard_date,
+            idCardFrontSrc: res.data.data.idcard_front_path,
+            idCardBackSrc: res.data.data.idCardBackSrc,
+
+            ssim: res.data.data.people_card_core_first,
+
+            mediaList: xx,
+
+            record_id: res.data.data.record_id
+          });
+        },
+        fail: function(res) {
+          console.log(res);
+        },
+      });
+    }
+  },
+  reset() {
+    this.setData({
+      showView: true,
+      disabled: false,
+      idCardFrontSrc: '',
+      idCardBackSrc: '',
+
+      business_name: '',
+      business_type: '',
+      business_address: '',
+      business_salary: '',
+      business_time: '',
+      business_term: '',
+      business_scope: '',
+
+      name: '',
+      sex: '',
+      nationality: '',
+      birth: '',
+      number: '',
+      address: '',
+      authority: '',
+      date: '',
+
+      ssim: '',
+
+      mediaList: [
+        {
+          type: 'image',
+          src: '/image/main/mediaAddImage.png',
+        },
+      ],
+
+      arrayExamine: [],
+      arrIndex: 0,
+    });
+  },
+  previewImage(e) {
+    let xx = new Array();
+    this.data.mediaList.forEach((res) => {
+      if (res.type == 'image') {
+        xx.push(res.src);
+      }
+    })
+    dd.previewImage({
+      current: 1,
+      urls: xx
+    });
+  },
+  actionSheetTap() {
+    var that = this;
+    const items = ['上传图片', '上传视频'];
+    dd.showActionSheet({
+      title: '选择',
+      cancelButtonText: '取消',
+      items,
+      success({ index }) {
+        //图片
+        if (index == 0) {
+          if (that.data.number == '') {
+            that.showToast('请先识别身份证');
+            return;
+          }
+          that.uploadOtherImageList();
+        }
+        //视频
+        if (index == 1) {
+          if (that.data.number == '') {
+            that.showToast('请先识别身份证');
+            return;
+          }
+          that.uploadVideo();
+        }
+      },
+    });
+  },
+  idCardOcr() {
+    var that = this;
+    const items = ['身份证正面', '身份证反面'];
+    dd.showActionSheet({
+      title: '选择',
+      cancelButtonText: '取消',
+      items,
+      success({ index }) {
+        //正面
+        if (index == 0) {
+          that.uploadSelfImage();
+        }
+        //反面
+        if (index == 1) {
+          that.uploadSelfBackImage();
+        }
+      },
+    });
+  },
+  chooseImage(e) {
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 1,
+      success: (res) => {
+        if (res && res.filePaths) {
+          switch (e.currentTarget.dataset.name) {
+            case 'marketImageSrc':
+              this.setData({
+                marketImageSrc: res.filePaths[0],
+              });
+              break;
+            case 'groupImageSrc':
+              this.setData({
+                groupImageSrc: res.filePaths[0],
+              });
+              break;
+            case 'taxationImageSrc':
+              this.setData({
+                taxationImageSrc: res.filePaths[0],
+              });
+              break;
+          }
+        }
+      },
+      fail: () => {
+        // dd.showToast({
+        //   content: '已取消上传', // 文字内容
+        // });
+      }
+    })
+  },
+  uploadSelfImage() {
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 1,
+      success: res => {
+        const path = (res.filePaths && res.filePaths[0]) || (res.apFilePaths && res.apFilePaths[0]);
+        dd.showLoading({
+          content: 'OCR扫描中...',
+        });
+        this.setData({
+          ssim: ''
+        })
+        dd.uploadFile({
+          url: getApp().data.ip + '/upload/cardOcr?cardFace=id-card-front',
+          fileType: 'image',
+          fileName: 'file',
+          filePath: path,
+          // data: {
+          //   cardFace: '',
+          // },
+          success: res => {
+            dd.hideLoading();
+            let obj = JSON.parse(res.data);
+            this.setData({
+              idCardFrontSrc: obj.data[2]
+            });
+            let ocr = obj.data[0].results[0].idCardInfo;
+            this.setData({
+              name: ocr.name,
+              sex: ocr.sex,
+              nationality: ocr.nationality,
+              birth: ocr.birth,
+              address: ocr.address,
+              number: ocr.number,
+            });
+          },
+          fail: function(res) {
+          },
+        });
+      },
+    });
+  },
+  uploadSelfBackImage() {
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 1,
+      success: res => {
+        this.setData({
+          selfBackImageSrc: res.filePaths[0],
+        });
+        const path = (res.filePaths && res.filePaths[0]) || (res.apFilePaths && res.apFilePaths[0]);
+        dd.showLoading({
+          content: 'OCR扫描中...',
+        });
+        dd.uploadFile({
+          url: getApp().data.ip + '/upload/cardOcr?cardFace=id-card-back',
+          fileType: 'image',
+          fileName: 'file',
+          filePath: path,
+          success: res => {
+            dd.hideLoading();
+            let obj = JSON.parse(res.data);
+            this.setData({
+              idCardBackSrc: obj.data[1]
+            });
+            let ocr = obj.data[0].results[0].idCardInfo;
+            this.setData({
+              authority: ocr.authority,
+              date: ocr.startDate + '到' + ocr.endDate,
+            });
+          },
+          fail: function(res) {
+          },
+        });
+      },
+    });
+  },
+  testOneSelf() {
+    var that = this;
+    //表单验证
+    if (!that.testForm()) {
+      return;
+    }
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 1,
+      success: res => {
+        dd.showLoading({
+          content: '人证比对中...',
+        });
+        const path = (res.filePaths && res.filePaths[0]) || (res.apFilePaths && res.apFilePaths[0]);
+        //上传人身图s
+        dd.uploadFile({
+          url: getApp().data.ip + '/upload/saveImage',
+          fileType: 'image',
+          fileName: 'file',
+          filePath: path,
+          formData: {
+            idNumber: that.data.number,
+            imageName: 'selfImage.png'
+          },
+          success: res => {
+            let obj = JSON.parse(res.data);
+            console.log(obj);
+            console.log('认证对比上传图片成功');
+            this.setData({
+              selfImageSrc: obj.data.src,
+            });
+            setTimeout(() => {
+              dd.hideLoading();
+            }, 1000);
+            console.log(that.data.idCardFrontSrc, that.data.selfImageSrc);
+            dd.httpRequest({
+              url: getApp().data.ip + '/center/AipFaceApp?image_url_1=' + that.data.idCardFrontSrc + '&image_url_2=' + that.data.selfImageSrc,
+              method: 'GET',
+              headers: { 'content-type': 'application/json;charset=utf-8' },
+              // data: {
+              //   type: 0,
+              //   image_url_1: that.data.idCardFrontSrc,
+              //   image_url_2: that.data.selfImageSrc
+              // },
+              success: (res) => {
+                console.log(res);
+                dd.hideLoading();
+                let test = res.data.confidence.toFixed(2);
+                that.setData({
+                  ssim: test
+                })
+              }
+            });
+          }
+        });
+
+      },
+    });
+  },
+  uploadOtherImageList() {
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 10,
+      success: res => {
+        var that = this;
+        for (let i = 0; i < res.filePaths.length; i++) {
+          that.uploadImageList('image' + i + '.png', that.data.number, res.filePaths[i]);
+        }
+      },
+    });
+  },
+  uploadVideo() {
+    dd.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      success: res => {
+        var that = this;
+        that.uploadVideoList('video.mp4', that.data.number, res.filePath);
+      }
+    });
+  },
+  // 表单输入赋值
+  bindKeyInput(e) {
+    switch (e.target.dataset.index) {
+      case 'business_name':
+        this.setData({
+          business_name: e.detail.value,
+        });
+        break;
+      case 'business_type':
+        this.setData({
+          business_type: e.detail.value,
+        });
+        break;
+      case 'business_address':
+        this.setData({
+          business_address: e.detail.value,
+        });
+        break;
+      case 'business_salary':
+        this.setData({
+          business_salary: e.detail.value,
+        });
+        break;
+      case 'business_time':
+        this.setData({
+          business_time: e.detail.value,
+        });
+        break;
+      case 'business_term':
+        this.setData({
+          business_term: e.detail.value,
+        });
+        break;
+      case 'business_scope':
+        this.setData({
+          business_scope: e.detail.value,
+        });
+        break;
+      case 'name':
+        this.setData({
+          name: e.detail.value,
+        });
+        break;
+      case 'sex':
+        this.setData({
+          sex: e.detail.value,
+        });
+        break;
+      case 'nationality':
+        this.setData({
+          nationality: e.detail.value,
+        });
+        break;
+      case 'birth':
+        this.setData({
+          birth: e.detail.value,
+        });
+        break;
+      case 'number':
+        this.setData({
+          number: e.detail.value,
+        });
+        break;
+      case 'address':
+        this.setData({
+          address: e.detail.value,
+        });
+        break;
+      case 'authority':
+        this.setData({
+          authority: e.detail.value,
+        });
+        break;
+      case 'date':
+        this.setData({
+          date: e.detail.value,
+        });
+        break;
+    }
+  },
+  uploadFile(e) {
+    var that = this;
+    let obj = that.data;
+    //表单验证
+    if (!that.testForm()) {
+      return;
+    }
+    //转换审核人id
+    let checker_id;
+    this.data.arrayExamine.forEach((element) => {
+      if (element.id == this.data.arrIndex) {
+        checker_id = element.checker_id;
+      }
+    })
+    if(checker_id == ''){
+      checker_id=-1;
+    }
+    //先传文字
+    that.uploadTest(checker_id, e.target.dataset.index);
+    console.log("表单文字上传成功");
+    //再传媒体
+    // let list = that.data.mediaList;
+    // console.log(list);
+    // for (let i = 1; i < list.length; i++) {
+    //   if (list[i].type == 'image') {
+    //     that.uploadImageList('image' + i + '.png', that.data.number, list[i].src);
+    //   }
+    //   if (list[i].type == 'video') {
+    //     that.uploadVideoList('video' + i + '.mp4', that.data.number, list[i].src);
+    //   }
+    // }
+    dd.alert({ title: '上传成功' });
+    // dd.navigateTo({ url: '../index/index' })
+  },
+  showToast(x) {
+    dd.showToast({
+      content: x, // 文字内容
+    });
+  },
+  testForm() {
+    var obj = this.data;
+    // if (obj.business_name == '') {
+    //   this.showToast('企业名称为空');
+    //   return false;
+    // } else if (obj.business_type == '') {
+    //   this.showToast('企业类型为空');
+    //   return false;
+    // } else if (obj.business_address == '') {
+    //   this.showToast('企业地址为空');
+    //   return false;
+    // } else if (obj.business_salary == '') {
+    //   this.showToast('注册资本为空');
+    //   return false;
+    // } else if (obj.business_time == '') {
+    //   this.showToast('成立日期为空');
+    //   return false;
+    // } else if (obj.business_term == '') {
+    //   this.showToast('营业期限为空');
+    //   return false;
+    // } else if (obj.business_scope == '') {
+    //   this.showToast('经营范围为空');
+    //   return false;
+    // } else 
+    if (obj.name == '') {
+      this.showToast('姓名为空');
+      return false;
+    } else if (obj.sex == '') {
+      this.showToast('性别为空');
+      return false;
+    } else if (obj.nationality == '') {
+      this.showToast('民族为空');
+      return false;
+    } else if (obj.birth == '') {
+      this.showToast('出生日期为空');
+      return false;
+    } else if (obj.number == '') {
+      this.showToast('身份证号为空');
+      return false;
+    } else if (obj.address == '') {
+      this.showToast('地址为空');
+      return false;
+    } else if (obj.authority == '') {
+      this.showToast('签发机关为空');
+      return false;
+    } else if (obj.date == '') {
+      this.showToast('有效期限为空');
+      return false;
+    } else {
+      return true;
+    }
+  },
+  uploadTest(checker_id, state) {
+    let businessUser = new Object();
+    businessUser.idcard_name = this.data.name;
+    businessUser.idcard_sex = this.data.sex;
+    businessUser.idcard_nationality = this.data.nationality;
+    businessUser.idcard_birth = this.data.birth;
+    businessUser.idcard_number = this.data.number;
+    businessUser.idcard_address = this.data.address;
+    businessUser.idcard_authority = this.data.authority;
+    businessUser.idcard_date = this.data.date;
+    businessUser.idcard_front_path = this.data.idCardFrontSrc;
+    businessUser.idcard_back_path = this.data.idCardBackSrc;
+    let business = new Object();
+    business.business_name = this.data.business_name;
+    business.business_type = this.data.business_type;
+    business.business_address = this.data.business_address;
+    business.business_salary = this.data.business_salary;
+    business.business_time = this.data.business_time;
+    business.business_term = this.data.business_term;
+    business.business_scope = this.data.business_scope;
+
+    let list = new Array();
+    for (let i = 1; i < this.data.mediaList.length; i++) {
+      list.push(this.data.mediaList[i].src);
+    }
+    //record_state 0 1 2 3 待审核 已审核 已退办 暂存代办
+    //record_id默认为''意为新增，有值的话意为修改
+    let recordParam = new Object();
+    recordParam.checker_id = checker_id;
+    recordParam.record_state = state;
+    recordParam.recordKey = this.data.record_id;
+    recordParam.people_card_core_first = this.data.ssim;
+
+    dd.httpRequest({
+      // ?businessUser='+JSON.stringify(businessUser)+'&business='+JSON.stringify(business)+'&list='+JSON.stringify(list)+'&recordParam='+JSON.stringify(recordParam),
+      url: getApp().data.ip + '/upload/saveFormApp',
+          // +'idcard_name='+this.data.name
+          // +'&idcard_sex='+this.data.sex
+          // +'&idcard_nationality='+this.data.nationality
+          // +'&idcard_birth='+this.data.birth
+          // +'&idcard_number='+this.data.number
+          // +'&idcard_address='+this.data.address
+          // +'&idcard_authority='+this.data.authority
+          // +'&idcard_date='+this.data.date
+          // +'&idcard_front_path='+this.data.idCardFrontSrc
+          // +'&idcard_back_path='+this.data.idCardBackSrc
+          
+          // +'&business_name='+this.data.business_name
+          // +'&business_type='+this.data.business_type
+          // +'&business_address='+this.data.business_address
+          // +'&business_salary='+this.data.business_salary
+          // +'&business_time='+this.data.business_time
+          // +'&business_term='+this.data.business_term
+          // +'&business_scope='+this.data.business_scope,
+
+      method: 'POST',
+      headers: {'Content-Type': 'application/json; charset=UTF-8'},
+      data: {
+        // businessUser: businessUser,
+        // business: business,
+        // list: list,
+        // recordParam: recordParam
+      },
+      dataType: 'json',
+      success: function(res) {
+      },
+      fail: function(res) {
+      },
+    });
+  },
+  uploadVideoList(videoName, idNumber, filePath) {
+    dd.uploadFile({
+      url: getApp().data.ip + '/upload/saveVideo',
+      fileType: 'video',
+      fileName: 'file',
+      filePath: filePath,
+      formData: {
+        idNumber: idNumber,
+        videoName: videoName
+      },
+      success: res => {
+        let obj = JSON.parse(res.data);
+        let xx = this.data.mediaList;
+        let x = new Object();
+        x.type = obj.data.type;
+        x.src = obj.data.src;
+        xx.push(x);
+        console.log(xx);
+        this.setData({
+          mediaList: xx,
+        });
+      },
+      fail: function(res) {
+        console.log('视频上传失败', res);
+      }
+    });
+  },
+  uploadImageList(imageName, idNumber, filePath) {
+    dd.uploadFile({
+      url: getApp().data.ip + '/upload/saveImage',
+      fileType: 'image',
+      fileName: 'file',
+      filePath: filePath,
+      formData: {
+        idNumber: idNumber,
+        imageName: imageName
+      },
+      success: res => {
+        let obj = JSON.parse(res.data);
+        let xx = this.data.mediaList;
+        let x = new Object();
+        x.type = obj.data.type;
+        x.src = obj.data.src;
+        xx.push(x);
+        console.log(xx);
+        this.setData({
+          mediaList: xx,
+        });
+      },
+      fail: function(res) {
+      }
+    });
+  },
+  bindObjPickerChange(e) {
+    this.setData({
+      arrIndex: e.detail.value,
+    });
+  }
+});

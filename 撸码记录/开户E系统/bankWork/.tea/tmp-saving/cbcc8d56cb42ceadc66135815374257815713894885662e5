@@ -1,0 +1,282 @@
+Page({
+  data: {
+    effective: '',
+    onItemTap: 'handleListItemTap',
+    header: '任务列表',
+    data: [],
+    userid: '',
+    src: '',
+    logo: 0  //1时登录查询list，1是登录不查询list,钉钉整不会promise，摊手。。。
+  },
+  onPullDownRefresh() {
+    this.onReady();
+    dd.stopPullDownRefresh();
+  },
+  onReady() {
+    this.setData({
+      logo: 0
+    })
+    this.login();
+    setTimeout(() => {
+      this.getRecordList();
+    }, 2000);
+  },
+  login() {
+    var that = this;
+    let authCode;
+    let access_token;
+    let userid;
+    // 页面加载完成
+    //登录获取授权码
+    dd.getAuthCode({
+      success: function(res) {
+        console.log('授权码');
+        console.log(res.authCode);
+        authCode = res.authCode;
+        //获取access_token
+        dd.httpRequest({
+          url: 'https://oapi.dingtalk.com/gettoken?appkey=' + getApp().data.appkey + '&appsecret=' + getApp().data.appsecret,
+          method: 'GET',
+          headers: { 'content-type': 'application/json;charset=utf-8' },
+          dataType: 'json',
+          success: function(res) {
+            console.log('获取access_token');
+            console.log(res.data.access_token);
+            access_token = res.data.access_token;
+            //获取userid完成，将之交于后端
+            dd.httpRequest({
+              url: getApp().data.ip + '/app/userLogin?access_token=' + access_token + '&code=' + authCode + '',
+              method: 'GET',
+              headers: { 'content-type': 'application/json;charset=utf-8' },
+              success: (res) => {
+                let userid = res.data.data;
+                that.setData({
+                  userid: userid
+                })
+                console.log('用户' + userid + '登陆成功');
+                console.log("logo   " + that.data.logo);
+                if (that.data.logo == 0) {
+                  // that.getRecordList();
+                }
+              },
+            });
+          },
+        });
+      }
+    });
+  },
+  getRecordList() {
+    dd.httpRequest({
+      url: getApp().data.ip + '/center/queryRecord',
+      method: 'GET',
+      headers: { 'content-type': 'application/json;charset=utf-8' },
+      dataType: 'json',
+      success: (res) => {
+        console.log('获取任务list');
+        console.log(res);
+        let list = new Array();
+        if (res.data.length > 1) {
+          list.push(res.data[0]);
+          list.push(res.data[1]);
+        }
+        this.setData({
+          data: list,
+        });
+      },
+      fail: (res) => {
+        console.log(res);
+      }
+    });
+  },
+  handleListItemTap(e) {
+    this.setData({
+      logo: 1
+    });
+    this.login();
+    console.log(e);
+    dd.navigateTo({ url: '../service/service?param=edit&id=' + e.currentTarget.dataset.index + '&userid=' + this.data.userid });
+  },
+  delTask(e) {
+    let that = this;
+    console.log(e.currentTarget.dataset.index);
+    dd.httpRequest({
+      url: getApp().data.ip + '/center/deleteRecord',
+      method: 'POST',
+      data: {
+        recordIds: e.currentTarget.dataset.index,
+      },
+      dataType: 'json',
+      success: function(res) {
+        dd.showToast({
+          content: '删除成功', // 文字内容
+        });
+        that.getRecordList();
+      },
+      fail: function(res) {
+        console.log(res);
+      },
+    });
+  },
+  idCardOcr() {
+    var that = this;
+    const items = ['身份证正面', '身份证反面'];
+    dd.showActionSheet({
+      title: '选择',
+      cancelButtonText: '取消',
+      items,
+      success({ index }) {
+        //正面
+        if (index == 0) {
+          that.uploadSelfImage();
+        }
+        //反面
+        if (index == 1) {
+          that.uploadSelfBackImage();
+        }
+      },
+    });
+  },
+  uploadSelfImage() {
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 1,
+      success: res => {
+        dd.showLoading({
+          content: 'OCR扫描中...',
+        });
+        this.setData({
+          src: res.filePaths[0],
+        });
+        const path = (res.filePaths && res.filePaths[0]) || (res.apFilePaths && res.apFilePaths[0]);
+        console.log(path);
+        dd.uploadFile({
+          url: getApp().data.ip + '/upload/cardOcr?cardFace=id-card-front',
+          fileType: 'image',
+          fileName: 'file',
+          filePath: path,
+          // data: {
+          //   cardFace: '',
+          // },
+          success: res => {
+            dd.hideLoading();
+            let obj = JSON.parse(res.data);
+            let ocr = obj.data[0].results[0].idCardInfo;
+            dd.navigateTo({ url: '../ocr/ocr?type=front&src=' + this.data.src + '&name=' + ocr.name + '&sex=' + ocr.sex + '&nationality=' + ocr.nationality + '&birth=' + ocr.birth + '&address=' + ocr.address + '&number=' + ocr.number })
+          },
+          fail: function(res) {
+          },
+        });
+      },
+    });
+  },
+  uploadSelfBackImage() {
+    // if(this.data.number==''){
+    //   this.showToast('请先OCR身份证正面');
+    //   return ;
+    // }
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 1,
+      success: res => {
+        dd.showLoading({
+          content: 'OCR扫描中...',
+        });
+        this.setData({
+          src: res.filePaths[0],
+        });
+        const path = (res.filePaths && res.filePaths[0]) || (res.apFilePaths && res.apFilePaths[0]);
+        console.log(path);
+        dd.uploadFile({
+          url: getApp().data.ip + '/upload/cardOcr?cardFace=id-card-back',
+          fileType: 'image',
+          fileName: 'file',
+          filePath: path,
+          success: res => {
+            dd.hideLoading();
+            let obj = JSON.parse(res.data);
+            let ocr = obj.data[0].results[0].idCardInfo;
+            console.log(ocr);
+            this.setData({
+              authority: ocr.authority,
+              effective: ocr.startDate + '到' + ocr.endDate,
+            });
+            dd.navigateTo({ url: '../ocr/ocr?type=back&src=' + this.data.src + '&authority=' + ocr.authority + '&date=' + this.data.effective })
+          },
+          fail: function(res) {
+          },
+        });
+      },
+    });
+  },
+  uploadImageList() {
+    dd.chooseImage({
+      sourceType: ['camera', 'album'],
+      count: 5,
+      success: res => {
+        // const path = (res.filePaths && res.filePaths[0]) || (res.apFilePaths && res.apFilePaths[0]);
+        res.filePaths.forEach((item) => {
+          console.log(item);
+          dd.uploadFile({
+            url: getApp().data.ip + '/upload/cardOcr',
+            fileType: 'image',
+            fileName: 'file',
+            filePath: item,
+            success: function(res) {
+              console.log(res);
+            },
+            fail: function(res) {
+              console.log(res);
+            },
+          });
+        })
+        dd.navigateTo({ url: '../form/form' })
+      },
+    });
+  },
+  uploadVideo() {
+    dd.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      success: res => {
+        console.log(item);
+        dd.uploadFile({
+          url: getApp().data.ip + '/upload/cardOcr',
+          fileType: 'video',
+          fileName: 'file',
+          filePath: res.filePath,
+        });
+      },
+    });
+  },
+  navToService() {
+    this.setData({
+      logo: 1
+    });
+    this.login();
+    const items = ['法人办理', '经办人办理'];
+    let corporationOrOperator;
+    dd.showActionSheet({
+      title: '办理方式',
+      cancelButtonText: '取消',
+      items,
+      success({ index }) {
+        //法人本人
+        if (index == 0) {
+          corporationOrOperator = 'corporation';
+          dd.navigateTo({ url: '../service/service?corporationOrOperator=' + corporationOrOperator });
+        }
+        //经办人
+        if (index == 1) {
+          corporationOrOperator = 'operator';
+          dd.navigateTo({ url: '../service/service?corporationOrOperator=' + corporationOrOperator })
+        }
+      },
+    });
+  },
+  navToSelf() {
+    dd.navigateTo({ url: '../self/self' })
+  },
+  navToCloud() {
+    dd.navigateTo({ url: '../cloud/cloud?userId=' + this.data.userid })
+  },
+});

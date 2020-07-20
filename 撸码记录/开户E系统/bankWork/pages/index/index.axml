@@ -1,0 +1,53 @@
+<view style="width:100%;overflow-x:hidden;">
+  <view class="title">开户E系统</view>
+  <view class="a-list">
+    <view class="firstPart">
+      <view class="firstPartImage"></view>
+      <view class="firstPartSpan">功能应用</view>
+    </view>
+    <view class="shotUpload">
+      <view class="cameraImage" onTap="idCardOcr"></view>
+      <view class="ocrSpan">身份证识别</view>
+      <view class="teleCameraImage" onTap="navToService"></view>
+      <view class="serviceSpan">开户业务</view>
+      <view class="upDownImage" onTap="navToCloud"></view>
+      <view class="upDownSpan">文件存储</view>
+    </view>
+  </view>
+  <view class="a-list">
+    <view class="firstPart">
+      <view class="secondPartImage"></view>
+      <view class="firstPartSpan">开户业务记录</view>
+    </view>
+    <view class="indexScroll">
+      <!--<block a:for={{data}}><view class="record_list" onTap="{{onItemTap}}" data-index={{item.record_id}}><text class="business_name">{{item.business_name}}</text><text class="law_name">{{item.law_name}}</text><text class="submit_time">{{item.business_time}}</text><text a:if="{{item.record_state=='0'}}" class="waitExamine">待审核</text><text a:if="{{item.record_state=='1'}}" class="passExamine">通过</text><text a:if="{{item.record_state=='2'}}" class="unPassExamine">不通过</text></view></block> -->
+      <view a:if={{data}} class="a-list-items">
+        <block a:for={{data}}>
+          <view class="a-list-item {{index !== (data.length - 1) ? '': 'last'}} am-list-item-{{item.align || 'middle'}}" hover-class="a-list-item-hover" onTap="{{onItemTap}}" data-index={{item.record_id}}>
+            <view class="a-list-item-line {{item.textMode ? 'a-list-item-line-' + item.textMode : ''}}">
+              <view class="a-list-item-wrap">
+                <view class="list-items">
+                  <text class="a-list-line-name">{{item.business_name}}
+                    <view class="name_goImage"></view></text>
+                  <text class="a-list-line">{{item.business_time}}</text>
+                </view>
+              </view>
+              <!--<icon a:if={{item.just=='1'}} type="success" aria-label="success" size="20"/> -->
+              <!--<icon a:if={{item.just=='0'}} type="cancel" aria-label="cancel" size="20"/> -->
+              <view class="backImage" a:if={{item.record_state=='1'}}>
+                <view class="pass"></view>
+              </view>
+              <view class="statePosition" a:if={{item.record_state!='1'}} catchTap=''>
+                <view class="waitExamine" a:if={{item.record_state=='0'}}>待审核</view>
+                <view class="notPass" a:if={{item.record_state=='2'}}>不通过</view>
+                <view class="temporarySave" a:if={{item.record_state=='3'}}>暂存代办</view>
+                <view class="del_image" data-index="{{item.record_id}}" onTap="delTask"></view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <text class="getMore" onTap="navToSelf">更多...</text>
+    </view>
+  </view>
+</view>

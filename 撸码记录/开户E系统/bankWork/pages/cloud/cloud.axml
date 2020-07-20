@@ -1,0 +1,27 @@
+<view style="width:100%;overflow-x:hidden;">
+  <view class="title">文件存储</view>
+  <view class="a-list">
+    <view class="fireSpan" onTap="actionSheetTap">
+      <!-- <image mode="scaleToFill" src="/image/main/upload.png"/ class="image_class"></image> -->
+      文件上传
+    </view>
+    <scroll-view scroll-y="{{true}}" class="mediaListCLassY">
+      <block a:for="{{mediaLists}}">
+        <view class="timeSpan">{{item.createTime}}</view>
+        <scroll-view class="mediaListCLassX" scroll-x="{{true}}" a:if="{{item.createTime!=''}}">
+          <block a:for="{{item.batchFile}}">
+            <image mode="aspectFill" data-index="{{item.imageIndex}}" data-indey="{{item.imageIndey}}" data-name="{{item.fileName}}" data-id="{{item.fileId}}" data-src="{{item.fileUrl}}" onLongTap="downloadOrDelete" src="{{item.fileUrl}}" a:if="{{item.fileType==imageType}}" onTap="previewImage" class="image_class"/>
+            <image a:if="{{item.fileType==videoType}}" data-name="{{item.fileName}}" data-id="{{item.fileId}}" data-src="{{item.fileUrl}}" onLongTap="downloadOrDelete" src='/image/main/video.png' data-index="{{item.fileUrl}}" onTap="playVideo" class="image_class"></image>
+            <!--<video a:if="{{item.type=='video'}}" src="{{item.url}}" class="image_class"></video> -->
+          </block>
+        </scroll-view>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 视频展示 -->
+  <view a:if="{{videoSrc!=''}}" class="videoBoxSize">
+    <video src="{{videoSrc}}" class="videoSize" autoplay="true" controls="true"></video>
+    <view onTap="hideVideo" class="fontSize">X</view>
+  </view>
+</view>
+</view>

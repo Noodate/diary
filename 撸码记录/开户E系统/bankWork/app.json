@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/service/service",
+    "pages/query/query",
+    "pages/self/self",
+    "pages/ocr/ocr",
+    "pages/cloud/cloud",
+    "pages/demo/demo"
+  ],
+  "window": {
+    "defaultTitle": " "
+  },
+   "networkTimeout": {
+        "request": 3000000, 
+        "downloadFile": 15000 
+    }
+}
